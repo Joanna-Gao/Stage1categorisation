@@ -32,6 +32,7 @@ trainFrac = 0.7
 validFrac = 0.1
 
 #get trees from files, put them in data frames
+#procfilemap is a dict. 
 procFileMap = {'ggh':'ggH.root', 'vbf':'VBF.root', 'tth':'ttH.root', 'wzh':'VH.root', 'dipho':'Dipho.root', 'gjet':'GJet.root', 'qcd':'QCD.root'}
 theProcs = procFileMap.keys()
 
@@ -45,17 +46,17 @@ trainTotal = None
 if not opts.dataFrame:
   trainFrames = {}
   #get the trees, turn them into arrays
-  for proc,fn in procFileMap.iteritems():
-      trainFile   = r.TFile('%s/%s'%(trainDir,fn))
+  for proc,fn in procFileMap.iteritems(): #proc,fn are like i,j, key,data
+      trainFile   = r.TFile('%s/%s'%(trainDir,fn)) #set up treefile to train from
       if proc[-1].count('h') or 'vbf' in proc: trainTree = trainFile.Get('vbfTagDumper/trees/%s_125_13TeV_VBFDiJet'%proc)
-      else: trainTree = trainFile.Get('vbfTagDumper/trees/%s_13TeV_VBFDiJet'%proc)
-      trainTree.SetBranchStatus('nvtx',0)
+      else: trainTree = trainFile.Get('vbfTagDumper/trees/%s_13TeV_VBFDiJet'%proc) #ASK ED. WHY ARE THEY THE SAME. WHAT IS IT DOING FOR PROC[-1] COUNT H???
+      trainTree.SetBranchStatus('nvtx',0) #set values of branches of the training tree. Name of branch, variable value.
       trainTree.SetBranchStatus('VBFMVAValue',0)
       trainTree.SetBranchStatus('dijet_*',0)
       trainTree.SetBranchStatus('dZ',0)
       trainTree.SetBranchStatus('centralObjectWeight',0)
       trainTree.SetBranchStatus('rho',0)
-      trainTree.SetBranchStatus('nvtx',0)
+      trainTree.SetBranchStatus('nvtx',0) #WHY ARE THERE TWO THE SAME
       trainTree.SetBranchStatus('event',0)
       trainTree.SetBranchStatus('lumi',0)
       trainTree.SetBranchStatus('processIndex',0)
@@ -65,7 +66,7 @@ if not opts.dataFrame:
       newFile = r.TFile('/vols/cms/es811/Stage1categorisation/trainTrees/new.root','RECREATE')
       newTree = trainTree.CloneTree()
       trainFrames[proc] = pd.DataFrame( tree2array(newTree) )
-      del newTree
+      del newTree #WHYYYY
       del newFile
       trainFrames[proc]['proc'] = proc
   print 'got trees'
