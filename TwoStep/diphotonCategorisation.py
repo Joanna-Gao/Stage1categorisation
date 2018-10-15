@@ -25,7 +25,7 @@ parser.add_option('--trainParams',default=None, help='Comma-separated list of co
 
 #setup global variables
 trainDir = opts.trainDir
-if trainDir.endswith('/'): trainDir = trainDir[:-1] # FIXME!!!!!!!!! When run gave error: AttributeError: 'NoneType' object has no attribute 'endswith'
+if trainDir.endswith('/'): trainDir = trainDir[:-1] #:) 
 frameDir = trainDir.replace('trees','frames')
 if opts.trainParams: opts.trainParams = opts.trainParams.split(',')
 trainFrac = 0.7
