@@ -89,7 +89,7 @@ if not opts.dataFrame:
   trainTotal = trainTotal[trainTotal.subleadmva>-0.9]
   trainTotal = trainTotal[trainTotal.leadptom>0.333]
   trainTotal = trainTotal[trainTotal.subleadptom>0.25]
-  trainTotal = trainTotal[trainTotal.stage1cat>-1.]
+  trainTotal = trainTotal[trainTotal.stage1cat>-1.] #????????????????????????? what is this?
   print 'done basic preselection cuts'
   
   #add extra info to dataframe
@@ -131,7 +131,7 @@ diphoFW = trainTotal['weight'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
 del trainTotal
 
-diphoX  = diphoX[diphoShuffle]
+diphoX  = diphoX[diphoShuffle] #????????????????????????? why shuffle indices?
 diphoY  = diphoY[diphoShuffle]
 diphoTW = diphoTW[diphoShuffle]
 diphoAW = diphoAW[diphoShuffle]
