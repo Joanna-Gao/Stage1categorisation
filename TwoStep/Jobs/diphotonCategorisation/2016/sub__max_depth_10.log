@@ -1,0 +1,36 @@
+About to run the following command:
+python diphotonCategorisation.py -t /vols/cms/es811/Stage1categorisation/2016/trees --intLumi 35.9 --trainParams max_depth:10
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+Failure..
+/srv/localstage/scratch/4406372.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9 --trainParams max_depth:10
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_10.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__max_depth_10.model
+Default training performance:
+area under roc curve for training set = 0.784
+area under roc curve for test set     = 0.782
+Alternative training performance:
+area under roc curve for training set = 0.853
+area under roc curve for test set     = 0.814
+Failure..
+/srv/localstage/scratch/4422941.1.hep.q

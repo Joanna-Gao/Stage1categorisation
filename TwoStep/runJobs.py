@@ -5,7 +5,7 @@ dryRun = False
 #dryRun = True
 
 myDir = getcwd()
-baseDir = '/vols/cms/es811/Stage1categorisation'
+baseDir = '/home/hep/jg4814/CMSSW_10_2_0'
 #years = ['2016','2017']
 
 years = ['2016']
