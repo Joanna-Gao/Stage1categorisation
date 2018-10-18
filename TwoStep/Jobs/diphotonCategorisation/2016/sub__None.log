@@ -34,3 +34,213 @@ area under roc curve for training set = 0.813
 area under roc curve for test set     = 0.807
 Failure..
 /srv/localstage/scratch/4422940.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.777
+area under roc curve for test set     = 0.772
+Alternative training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.806
+Failure..
+/srv/localstage/scratch/4442876.1.hep.q
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.777
+area under roc curve for test set     = 0.779
+Alternative training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.810
+Failure..
+/srv/localstage/scratch/4442878.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.777
+area under roc curve for test set     = 0.776
+Alternative training performance:
+area under roc curve for training set = 0.812
+area under roc curve for test set     = 0.808
+Failure..
+/srv/localstage/scratch/4450243.1.hep.q
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.781
+area under roc curve for test set     = 0.772
+Alternative training performance:
+area under roc curve for training set = 0.815
+area under roc curve for test set     = 0.804
+Failure..
+/srv/localstage/scratch/4450398.1.hep.q
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+der roc curve for training set = 0.779
+area under roc curve for test set     = 0.768
+Alternative training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.805
+Failure..
+/srv/localstage/scratch/4450396.1.hep.q
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.779
+area under roc curve for test set     = 0.780
+Alternative training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.809
+Failure..
+/srv/localstage/scratch/4450402.1.hep.q
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.777
+area under roc curve for test set     = 0.780
+Alternative training performance:
+area under roc curve for training set = 0.812
+area under roc curve for test set     = 0.811
+Failure..
+/srv/localstage/scratch/4450400.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.780
+area under roc curve for test set     = 0.774
+Alternative training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.809
+Failure..
+/srv/localstage/scratch/4458302.1.hep.q
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel.model
+Default training performance:
+area under roc curve for training set = 0.778
+area under roc curve for test set     = 0.777
+Alternative training performance:
+area under roc curve for training set = 0.812
+area under roc curve for test set     = 0.805
+Failure..
+/srv/localstage/scratch/4458304.1.hep.q

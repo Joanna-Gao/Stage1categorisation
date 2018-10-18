@@ -15,7 +15,7 @@ intLumi = 35.9
 #intLumi = 41.5
 
 script    = 'diphotonCategorisation.py'
-paramSets = [None,'max_depth:12']
+paramSets = [None,'max_depth:8']
 models    = None
 #dataFrame = 'trainTotal.pkl'
 dataFrame = None
