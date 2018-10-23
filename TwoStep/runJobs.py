@@ -17,8 +17,8 @@ intLumi = 35.9
 script    = 'diphotonCategorisation.py'
 paramSets = [None,'max_depth:8']
 models    = None
-#dataFrame = 'trainTotal.pkl'
-dataFrame = None
+dataFrame = 'trainTotal.pkl'
+#dataFrame = None
 sigFrame  = None
 
 #script    = 'dataSignificances.py'
@@ -49,7 +49,7 @@ if __name__=='__main__':
     if 'VBF' in script: trainDir  = '%s/%s/ForVBF/trees'%(baseDir,year) #FIXME
     theCmd = 'python %s -t %s '%(script, trainDir)
     if dataFrame: 
-      theCmd += '-d %s '%dataFrame
+      theCmd += '-d %s/%s/frames/%s '%(baseDir, year, dataFrame)
     if sigFrame: 
       theCmd += '-s %s '%sigFrame
     if intLumi: 
