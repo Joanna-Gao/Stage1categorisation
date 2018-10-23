@@ -89,7 +89,7 @@ if not opts.dataFrame:
   trainTotal = trainTotal[trainTotal.subleadmva>-0.9]
   trainTotal = trainTotal[trainTotal.leadptom>0.333]
   trainTotal = trainTotal[trainTotal.subleadptom>0.25]
-  trainTotal = trainTotal[trainTotal.stage1cat>-1.] #????????????????????????? what is this?
+  trainTotal = trainTotal[trainTotal.stage1cat>-1.]
   print 'done basic preselection cuts'
   
   #add extra info to dataframe
@@ -164,13 +164,14 @@ print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
 
+
 #save it
 modelDir = trainDir.replace('trees','models')
 if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-
+"""
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
@@ -180,6 +181,7 @@ print 'done'
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
+"""
 
 #check performance of each training
 diphoPredYxcheck = diphoModel.predict(trainingDipho)
@@ -188,11 +190,32 @@ print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
 
+# Slicing testingDipho for jackknife
+testingDipho_copy = testingDipho
+"""
+selectionIndex = range(testingDipho.num_row())
+halfIndex = selectionIndex[:len(selectionIndex)//2]
+print "trying to slice:", testingDipho.slice(halfIndex).num_col(), testingDipho.slice(halfIndex).num_row()
+"""
+
+selectionIndex = range(testingDipho_copy.num_row())
+halfIndex = selectionIndex[:len(selectionIndex)//2]
+testingDipho_copy = testingDipho_copy.slice(halfIndex)
+print testingDipho_copy.num_row()
+#check performance of each training 
+diphoPredY_new = diphoModel.predict(testingDipho_copy)
+print diphoPredY_new.num_row()
+print 'Default training performance:' 
+print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY_new, sample_weight=diphoTestFW) )
+
+
+"""
 altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
 altDiphoPredY = altDiphoModel.predict(testingDipho)
 print 'Alternative training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
+"""
 
 exit("Plotting not working for now so exit")
 #make some plots 
