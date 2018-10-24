@@ -13,7 +13,7 @@ from otherHelpers import prettyHist, getAMS, computeBkg, getRealSigma
 from root_numpy import tree2array, fill_hist
 import usefulStyle as useSty
 
-#configure sijofxdkljfhmgckljtomfklc:esting git
+#configure options
 from optparse import OptionParser
 parser = OptionParser()
 parser.add_option('-t','--trainDir', help='Directory for input files')
@@ -28,7 +28,7 @@ trainDir = opts.trainDir
 if trainDir.endswith('/'): trainDir = trainDir[:-1] #:) 
 frameDir = trainDir.replace('trees','frames')
 if opts.trainParams: opts.trainParams = opts.trainParams.split(',')
-trainFrac = 0.5
+trainFrac = 0.7
 validFrac = 0.1
 
 #get trees from files, put them in data frames
@@ -49,7 +49,7 @@ if not opts.dataFrame:
   for proc,fn in procFileMap.iteritems(): #proc,fn are like i,j, key,data
       trainFile   = r.TFile('%s/%s'%(trainDir,fn)) #set up treefile to train from
       if proc[-1].count('h') or 'vbf' in proc: trainTree = trainFile.Get('vbfTagDumper/trees/%s_125_13TeV_VBFDiJet'%proc)
-      else: trainTree = trainFile.Get('vbfTagDumper/trees/%s_13TeV_VBFDiJet'%proc) #cheating
+      else: trainTree = trainFile.Get('vbfTagDumper/trees/%s_13TeV_VBFDiJet'%proc) #ASK ED. WHY ARE THEY THE SAME. WHAT IS IT DOING FOR PROC[-1] COUNT H???
       trainTree.SetBranchStatus('nvtx',0) #set values of branches of the training tree. Name of branch, variable value.
       trainTree.SetBranchStatus('VBFMVAValue',0)
       trainTree.SetBranchStatus('dijet_*',0)
@@ -89,7 +89,7 @@ if not opts.dataFrame:
   trainTotal = trainTotal[trainTotal.subleadmva>-0.9]
   trainTotal = trainTotal[trainTotal.leadptom>0.333]
   trainTotal = trainTotal[trainTotal.subleadptom>0.25]
-  trainTotal = trainTotal[trainTotal.stage1cat>-1.] 
+  trainTotal = trainTotal[trainTotal.stage1cat>-1.]
   print 'done basic preselection cuts'
   
   #add extra info to dataframe
@@ -131,14 +131,14 @@ diphoFW = trainTotal['weight'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
 del trainTotal
 
-diphoX  = diphoX[diphoShuffle] #shuffle indicies to mix up the production modes - going to split into training/test datasets so don't want
-diphoY  = diphoY[diphoShuffle] #them all in one.
+diphoX  = diphoX[diphoShuffle] #????????????????????????? why shuffle indices?
+diphoY  = diphoY[diphoShuffle]
 diphoTW = diphoTW[diphoShuffle]
 diphoAW = diphoAW[diphoShuffle]
 diphoFW = diphoFW[diphoShuffle]
 diphoM  = diphoM[diphoShuffle]
 
-diphoTrainX,  diphoValidX,  diphoTestX  = np.split( diphoX,  [diphoTrainLimit,diphoValidLimit] ) #splits dataset into training/validation/test
+diphoTrainX,  diphoValidX,  diphoTestX  = np.split( diphoX,  [diphoTrainLimit,diphoValidLimit] )
 diphoTrainY,  diphoValidY,  diphoTestY  = np.split( diphoY,  [diphoTrainLimit,diphoValidLimit] )
 diphoTrainTW, diphoValidTW, diphoTestTW = np.split( diphoTW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainAW, diphoValidAW, diphoTestAW = np.split( diphoAW, [diphoTrainLimit,diphoValidLimit] )
@@ -164,13 +164,14 @@ print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
 
+
 #save it
 modelDir = trainDir.replace('trees','models')
 if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-'''
+"""
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
@@ -180,7 +181,7 @@ print 'done'
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
-'''
+"""
 
 #check performance of each training
 diphoPredYxcheck = diphoModel.predict(trainingDipho)
@@ -189,50 +190,35 @@ print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
 
-cutfr = 0.9 #fracton to keep for each jackknife iteration
-countvar = 0
-diLen = len(diphoTestX)
+# Slicing testingDipho for jackknife
+testingDipho_copy = testingDipho
+"""
+selectionIndex = range(testingDipho.num_row())
+halfIndex = selectionIndex[:len(selectionIndex)//2]
+print "trying to slice:", testingDipho.slice(halfIndex).num_col(), testingDipho.slice(halfIndex).num_row()
+"""
 
-while countvar <10:
-    b = diphoTestX[:int(diLen)]
-    tyarray = diphoTestY[:int(diLen)]
-    farray = diphoTestTW[:int(diLen)]
-
-
-    bmatrix = xg.DMatrix(b, label=diphoTestY[:int(diLen*cutfr)], weight=farray, feature_names=diphoVars)
-
-    diphoPredY2 = diphoModel.predict(bmatrix)
-    print 'jackknifing:'  
-
-    #now this is failing! WHYYYYYYY
-    print 'area under roc curve, iteration', countvar, '= %1.3f'%( roc_auc_score(tyarray, diphoPredY2, sample_weight=farray) )
-    diLen = diLen*cutfr
-    countvar += 1
-
-'''
-while countvar <3:    
-    testingDiphosize = testingDipho.num_row()*cutfr #gives the number of rows in the dmatrix
-    inds = range(0, int(testingDiphosize),1)
-    testingDipho = testingDipho.slice(inds) #FIX ME PROBLEM IS HERE
-    
+selectionIndex = range(testingDipho_copy.num_row())
+halfIndex = selectionIndex[:len(selectionIndex)//2]
+testingDipho_copy = testingDipho_copy.slice(halfIndex)
+print testingDipho_copy.num_row()
+#check performance of each training 
+diphoPredY_new = diphoModel.predict(testingDipho_copy)
+print diphoPredY_new.num_row()
+print 'Default training performance:' 
+print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY_new, sample_weight=diphoTestFW) )
 
 
-    diphoPredY2 = diphoModel.predict(testingDipho)
-    print 'jackknifing:'  
-    print 'area under roc curve for test set = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY2, sample_weight=diphoTestFW) )
-    countvar +=1
-    
-print 'good cut!'
-'''
-#altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
-#altDiphoPredY = altDiphoModel.predict(testingDipho)
-#print 'Alternative training performance:'
-#print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
-#print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
+"""
+altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
+altDiphoPredY = altDiphoModel.predict(testingDipho)
+print 'Alternative training performance:'
+print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
+print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
+"""
 
 exit("Plotting not working for now so exit")
 #make some plots 
-
 plotDir = trainDir.replace('trees','plots')
 bkgEff, sigEff, nada = roc_curve(diphoTestY, diphoPredY, sample_weight=diphoTestFW)
 plt.figure(1)
