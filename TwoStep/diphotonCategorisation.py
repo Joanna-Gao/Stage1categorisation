@@ -8,6 +8,7 @@ import pickle
 from sklearn.metrics import roc_auc_score, roc_curve
 from os import path, system
 
+
 from addRowFunctions import addPt, truthDipho, reco, diphoWeight, altDiphoWeight
 from otherHelpers import prettyHist, getAMS, computeBkg, getRealSigma
 from root_numpy import tree2array, fill_hist
@@ -28,7 +29,7 @@ trainDir = opts.trainDir
 if trainDir.endswith('/'): trainDir = trainDir[:-1] #:) 
 frameDir = trainDir.replace('trees','frames')
 if opts.trainParams: opts.trainParams = opts.trainParams.split(',')
-trainFrac = 0.5
+trainFrac = 0.6
 validFrac = 0.1
 
 #get trees from files, put them in data frames
@@ -151,6 +152,7 @@ testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  
 trainParams = {}
 trainParams['objective'] = 'binary:logistic'
 trainParams['nthread'] = 1
+trainParams['max_depth']= 8
 paramExt = ''
 if opts.trainParams:
   paramExt = '__'
@@ -170,7 +172,7 @@ if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-'''
+
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
@@ -180,7 +182,7 @@ print 'done'
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
-'''
+
 
 #check performance of each training
 diphoPredYxcheck = diphoModel.predict(trainingDipho)
@@ -189,25 +191,47 @@ print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
 
-cutfr = 0.9 #fracton to keep for each jackknife iteration
+cutfr = 0.5 #fracton to keep for each jackknife iteration
 countvar = 0
-diLen = len(diphoTestX)
+diLente = diphoTestX.shape[0]
+diLentr = diphoTrainX.shape[0]
+rocstest = []
+rocstrain = []
 
 while countvar <10:
-    b = diphoTestX[:int(diLen)]
-    tyarray = diphoTestY[:int(diLen)]
-    farray = diphoTestTW[:int(diLen)]
+
+    diphoShufflete = np.random.permutation(diLente)  
+    diphoShuffletr = np.random.permutation(diLentr)
+    
+    testmatrix = diphoTestX[diphoShufflete][:int(diLente*cutfr)]
+    teyarray = diphoTestY[diphoShufflete][:int(diLente*cutfr)]
+    twarray = diphoTestFW[diphoShufflete][:int(diLente*cutfr)]
+    
+    trainmatrix = diphoTrainX[diphoShuffletr][:int(diLentr*cutfr)]
+    tryarray = diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)]
+    tarray = diphoTrainAW[diphoShuffletr][:int(diLentr*cutfr)]    
 
 
-    bmatrix = xg.DMatrix(b, label=diphoTestY[:int(diLen*cutfr)], weight=farray, feature_names=diphoVars)
+    testdmatrix = xg.DMatrix(testmatrix, label=diphoTestY[diphoShufflete][:int(diLente*cutfr)], weight=twarray, feature_names=diphoVars)
+    traindmatrix = xg.DMatrix(trainmatrix, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=tarray, feature_names=diphoVars)
 
-    diphoPredY2 = diphoModel.predict(bmatrix)
-    print 'jackknifing:'  
 
-    #now this is failing! WHYYYYYYY
-    print 'area under roc curve, iteration', countvar, '= %1.3f'%( roc_auc_score(tyarray, diphoPredY2, sample_weight=farray) )
-    diLen = diLen*cutfr
+    diphoPredtest = altDiphoModel.predict(testdmatrix)
+    diphoPredtrain = altDiphoModel.predict(traindmatrix)
+    print 'jackknifing (ALT MODEL):'  
+
+    rocscoretest = roc_auc_score(teyarray, diphoPredtest, sample_weight=twarray)
+    rocscoretrain = roc_auc_score(tryarray,diphoPredtrain, sample_weight=tarray)
+    print 'area under training roc curve, iteration', countvar, '= %1.3f'%( rocscoretrain )
+    print 'area under test roc curve, iteration', countvar, '= %1.3f'%( rocscoretest )
+    rocstest.append(rocscoretest)
+    rocstrain.append(rocscoretrain)
     countvar += 1
+
+print 'Mean = (train) ', np.mean(rocstrain)
+
+print 'Mean = (test) ', np.mean(rocstest)
+print 'Standard deviation (test) = ', np.std(rocstest)
 
 '''
 while countvar <3:    
