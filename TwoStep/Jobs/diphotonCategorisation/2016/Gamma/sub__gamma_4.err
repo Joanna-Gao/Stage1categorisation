@@ -1,0 +1,23 @@
+[16:31:21] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[16:31:30] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 16 extra nodes, 18 pruned nodes, max_depth=4
+[16:31:36] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 16 extra nodes, 38 pruned nodes, max_depth=4
+[16:31:42] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 16 extra nodes, 56 pruned nodes, max_depth=5
+[16:31:48] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 22 extra nodes, 66 pruned nodes, max_depth=5
+[16:31:54] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 24 extra nodes, 112 pruned nodes, max_depth=5
+[16:32:00] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 26 extra nodes, 116 pruned nodes, max_depth=6
+[16:32:07] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 34 extra nodes, 144 pruned nodes, max_depth=7
+[16:32:14] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 34 extra nodes, 168 pruned nodes, max_depth=7
+[16:32:20] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 38 extra nodes, 146 pruned nodes, max_depth=7
+[16:32:26] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 42 extra nodes, 178 pruned nodes, max_depth=7
+[16:32:27] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[16:32:37] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 506 extra nodes, 4 pruned nodes, max_depth=8
+[16:32:44] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 504 extra nodes, 4 pruned nodes, max_depth=8
+[16:32:51] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 506 extra nodes, 0 pruned nodes, max_depth=8
+[16:32:58] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 494 extra nodes, 10 pruned nodes, max_depth=8
+[16:33:04] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 482 extra nodes, 16 pruned nodes, max_depth=8
+[16:33:11] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 500 extra nodes, 6 pruned nodes, max_depth=8
+[16:33:18] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 482 extra nodes, 28 pruned nodes, max_depth=8
+[16:33:25] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 478 extra nodes, 24 pruned nodes, max_depth=8
+[16:33:32] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 480 extra nodes, 28 pruned nodes, max_depth=8
+[16:33:38] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 418 extra nodes, 70 pruned nodes, max_depth=8
+Plotting not working for now so exit

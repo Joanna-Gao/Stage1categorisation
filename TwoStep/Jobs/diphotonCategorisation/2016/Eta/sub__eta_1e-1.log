@@ -1,0 +1,50 @@
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams eta:1e-1
+Successfully loaded the dataframe
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__eta_1e-1.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__eta_1e-1.model
+Default training performance:
+area under roc curve for training set = 0.756
+area under roc curve for test set     = 0.755
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 0 = 0.794
+area under test roc curve, iteration 0 = 0.807
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 1 = 0.793
+area under test roc curve, iteration 1 = 0.810
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 2 = 0.794
+area under test roc curve, iteration 2 = 0.805
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 3 = 0.794
+area under test roc curve, iteration 3 = 0.807
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 4 = 0.794
+area under test roc curve, iteration 4 = 0.808
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 5 = 0.794
+area under test roc curve, iteration 5 = 0.809
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 6 = 0.795
+area under test roc curve, iteration 6 = 0.808
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 7 = 0.793
+area under test roc curve, iteration 7 = 0.809
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 8 = 0.794
+area under test roc curve, iteration 8 = 0.801
+jackknifing (ALT MODEL):
+area under training roc curve, iteration 9 = 0.793
+area under test roc curve, iteration 9 = 0.811
+Mean = (train)  0.793829954478
+Mean = (test)  0.807609039109
+Standard deviation (test) =  0.00269744044984
+Failure..
+/srv/localstage/scratch/4730234.1.hep.q

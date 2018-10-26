@@ -1,0 +1,79 @@
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+[20:41:49] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[20:41:58] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 32 extra nodes, 0 pruned nodes, max_depth=8
+[20:42:05] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 68 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:13] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 102 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:21] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 194 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:29] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 264 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:38] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 310 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:47] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 396 extra nodes, 0 pruned nodes, max_depth=12
+[20:42:56] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 500 extra nodes, 0 pruned nodes, max_depth=12
+[20:43:05] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 584 extra nodes, 0 pruned nodes, max_depth=12
+[20:43:15] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 628 extra nodes, 0 pruned nodes, max_depth=12
+[20:43:16] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[20:43:32] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6366 extra nodes, 0 pruned nodes, max_depth=12
+[20:43:44] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6370 extra nodes, 0 pruned nodes, max_depth=12
+[20:43:56] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6508 extra nodes, 0 pruned nodes, max_depth=12
+[20:44:09] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6564 extra nodes, 0 pruned nodes, max_depth=12
+[20:44:21] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6336 extra nodes, 0 pruned nodes, max_depth=12
+[20:44:33] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6192 extra nodes, 0 pruned nodes, max_depth=12
+[20:44:46] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6276 extra nodes, 0 pruned nodes, max_depth=12
+[20:44:58] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6058 extra nodes, 0 pruned nodes, max_depth=12
+[20:45:10] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5942 extra nodes, 0 pruned nodes, max_depth=12
+[20:45:22] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 4890 extra nodes, 0 pruned nodes, max_depth=12
+Plotting not working for now so exit
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+SysError in <TFile::TFile>: file /vols/cms/es811/Stage1categorisation/trainTrees/new.root can not be opened (No such file or directory)
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+Warning in <TTree::SetCacheSizeAux>: A TTreeCache could not be created because the TTree has no file
+[11:28:42] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[11:28:52] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 44 extra nodes, 0 pruned nodes, max_depth=11
+[11:28:59] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 80 extra nodes, 0 pruned nodes, max_depth=12
+11:28:49] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 142 extra nodes, 0 pruned nodes, max_depth=12
+[11:28:57] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 174 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:07] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 134 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:14] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 318 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:23] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 204 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:32] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 302 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:41] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 392 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:50] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 612 extra nodes, 0 pruned nodes, max_depth=12
+[11:29:51] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[11:29:59] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 544 extra nodes, 0 pruned nodes, max_depth=12
+[11:30:08] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 682 extra nodes, 0 pruned nodes, max_depth=12
+[11:30:09] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+[11:30:24] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6528 extra nodes, 0 pruned nodes, max_depth=12
+[11:30:29] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6336 extra nodes, 0 pruned nodes, max_depth=12
+[11:30:41] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6508 extra nodes, 0 pruned nodes, max_depth=12
+[11:30:52] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6316 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:04] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 6154 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:15] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5770 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:27] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5960 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:38] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5924 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:45] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5924 extra nodes, 0 pruned nodes, max_depth=12
+[11:31:56] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5860 extra nodes, 0 pruned nodes, max_depth=12
+[11:32:07] src/tree/updater_prune.cc:74: tree pruning end, 1 roots, 5084 extra nodes, 0 pruned nodes, max_depth=12
+Plotting not working for now so exit
