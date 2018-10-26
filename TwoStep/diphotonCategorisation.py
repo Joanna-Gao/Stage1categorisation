@@ -233,21 +233,7 @@ print 'Mean = (train) ', np.mean(rocstrain)
 print 'Mean = (test) ', np.mean(rocstest)
 print 'Standard deviation (test) = ', np.std(rocstest)
 
-'''
-while countvar <3:    
-    testingDiphosize = testingDipho.num_row()*cutfr #gives the number of rows in the dmatrix
-    inds = range(0, int(testingDiphosize),1)
-    testingDipho = testingDipho.slice(inds) #FIX ME PROBLEM IS HERE
-    
 
-
-    diphoPredY2 = diphoModel.predict(testingDipho)
-    print 'jackknifing:'  
-    print 'area under roc curve for test set = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY2, sample_weight=diphoTestFW) )
-    countvar +=1
-    
-print 'good cut!'
-'''
 #altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
 #altDiphoPredY = altDiphoModel.predict(testingDipho)
 #print 'Alternative training performance:'
