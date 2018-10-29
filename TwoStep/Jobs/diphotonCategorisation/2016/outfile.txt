@@ -1,0 +1,15 @@
+sub__max_depth_5.log:0.807372995293
+sub__max_depth_5.log:0.807694892114
+sub__max_depth_5.log:0.00427715857724
+sub__max_depth_6.log:0.816197951627
+sub__max_depth_6.log:0.807534230719
+sub__max_depth_6.log:0.00246398439869
+sub__max_depth_7.log:0.821387104156
+sub__max_depth_7.log:0.811104804486
+sub__max_depth_7.log:0.00304115738646
+sub__max_depth_8.log:0.83267705127
+sub__max_depth_8.log:0.815760018799
+sub__max_depth_8.log:0.00399292224422
+sub__max_depth_9.log:0.844261114055
+sub__max_depth_9.log:0.809808138023
+sub__max_depth_9.log:0.00470226960117
