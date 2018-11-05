@@ -152,6 +152,8 @@ testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  
 trainParams = {}
 trainParams['objective'] = 'binary:logistic'
 trainParams['nthread'] = 1
+# trainParams['max_depth'] = 8
+trainParams['eta'] = 0.6
 paramExt = ''
 if opts.trainParams:
   paramExt = '__'
@@ -171,6 +173,7 @@ if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
+
 
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
@@ -198,30 +201,30 @@ rocstest = []
 rocstrain = []
 
 while countvar <10:
-
+    # Using default model
     diphoShufflete = np.random.permutation(diLente)  
     diphoShuffletr = np.random.permutation(diLentr)
     
-    testmatrix = diphoTestX[diphoShufflete][:int(diLente*cutfr)]
-    teyarray = diphoTestY[diphoShufflete][:int(diLente*cutfr)]
+    TestX = diphoTestX[diphoShufflete][:int(diLente*cutfr)]
+    TestY = diphoTestY[diphoShufflete][:int(diLente*cutfr)]
     TestFW = diphoTestFW[diphoShufflete][:int(diLente*cutfr)]
     
-    trainmatrix = diphoTrainX[diphoShuffletr][:int(diLentr*cutfr)]
-    tryarray = diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)]
+    TrainX = diphoTrainX[diphoShuffletr][:int(diLentr*cutfr)]
+    TrainY = diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)]
     TrainTW = diphoTrainTW[diphoShuffletr][:int(diLentr*cutfr)]    
     TrainAW = diphoTrainAW[diphoShuffletr][:int(diLentr*cutfr)]    
     TrainFW = diphoTrainFW[diphoShuffletr][:int(diLentr*cutfr)]    
 
-    DefTrainDMatrix = xg.DMatrix(trainmatrix, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainTW, feature_names=diphoVars)
-    AltTrainDMatrix = xg.DMatrix(trainmatrix, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainAW, feature_names=diphoVars)
-    TestDMatrix = xg.DMatrix(testmatrix, label=diphoTestY[diphoShufflete][:int(diLente*cutfr)], weight=TestFW, feature_names=diphoVars)
+    DefTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainTW, feature_names=diphoVars)
+    AltTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainAW, feature_names=diphoVars)
+    TestDMatrix = xg.DMatrix(TestX, label=diphoTestY[diphoShufflete][:int(diLente*cutfr)], weight=TestFW, feature_names=diphoVars)
 
     diphoPredtrain = altDiphoModel.predict(DefTrainDMatrix)
     diphoPredtest = altDiphoModel.predict(TestDMatrix)
     
-    print 'jackknifing (DEFAULT MODEL):'  
-    rocscoretrain = roc_auc_score(tryarray,diphoPredtrain, sample_weight=TrainFW)
-    rocscoretest = roc_auc_score(teyarray, diphoPredtest, sample_weight=TestFW)
+    print 'jackknifing (Alt MODEL):'  
+    rocscoretrain = roc_auc_score(TrainY,diphoPredtrain, sample_weight=TrainFW)
+    rocscoretest = roc_auc_score(TestY, diphoPredtest, sample_weight=TestFW)
     print 'area under training roc curve, iteration', countvar, '= %1.3f'%( rocscoretrain )
     print 'area under test roc curve, iteration', countvar, '= %1.3f'%( rocscoretest )
     rocstest.append(rocscoretest)

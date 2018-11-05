@@ -1,0 +1,24 @@
+#!/bin/bash
+
+COUNTER=0
+while [ $COUNTER -lt 11 ];
+do
+	NUMBER=$COUNTER
+	for j in $(seq 1 9);
+	do
+		if [ $COUNTER == $j ];
+		then
+			NUMBER=$NUMBER e-1	
+		fi
+	done
+	if [ $COUNTER == 11 ];
+	then
+		NUMBER=1
+	fi
+
+	echo $NUMBER
+	# echo $(grep -E -o '\[0-9]{0,1}\.[0-9]{10,15}\>' sub__eta
+	let COUNTER=COUNTER+1
+done #>output.txt
+
+

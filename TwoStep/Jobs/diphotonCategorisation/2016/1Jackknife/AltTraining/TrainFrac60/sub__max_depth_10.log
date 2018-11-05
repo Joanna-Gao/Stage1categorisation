@@ -1,0 +1,50 @@
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:10
+Successfully loaded the dataframe
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_10.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__max_depth_10.model
+Default training performance:
+area under roc curve for training set = 0.785
+area under roc curve for test set     = 0.782
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 0 = 0.857
+area under test roc curve, iteration 0 = 0.804
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 1 = 0.859
+area under test roc curve, iteration 1 = 0.810
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 2 = 0.858
+area under test roc curve, iteration 2 = 0.812
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 3 = 0.858
+area under test roc curve, iteration 3 = 0.800
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 4 = 0.854
+area under test roc curve, iteration 4 = 0.810
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 5 = 0.854
+area under test roc curve, iteration 5 = 0.807
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 6 = 0.854
+area under test roc curve, iteration 6 = 0.805
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 7 = 0.858
+area under test roc curve, iteration 7 = 0.808
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 8 = 0.857
+area under test roc curve, iteration 8 = 0.811
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 9 = 0.856
+area under test roc curve, iteration 9 = 0.811
+Mean = (train)  0.856644214694
+Mean = (test)  0.807894703116
+Standard deviation (test) =  0.00362767505251
+Failure..
+/srv/localstage/scratch/4788458.1.hep.q

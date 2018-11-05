@@ -14,21 +14,21 @@ intLumi = 35.9
 #years = ['2017']
 #intLumi = 41.5
 
-script    = 'diphotonCategorisation.py'
-paramSets = ['max_depth:4','max_depth:5','max_depth:6','max_depth:7','max_depth:8','max_depth:9','max_depth:10','max_depth:11']
-#paramSets = [None]
-models    = None
-dataFrame = 'trainTotal.pkl'
-#dataFrame = None
-sigFrame  = None
+# script    = 'diphotonCategorisation.py'
+# paramSets = ['max_depth:6']
+# #paramSets = [None]
+# models    = None
+# dataFrame = 'trainTotal.pkl'
+# #dataFrame = None
+# sigFrame  = None
 
-#script    = 'dataSignificances.py'
-#models    = ['altDiphoModel.model','diphoModel.model']
-#paramSets = None
-#dataFrame = 'dataTotal.pkl'
-##dataFrame = None
-#sigFrame  = 'signifTotal.pkl'
-##sigFrame  = None
+script    = 'dataSignificances.py'
+models    = ['altDiphoModel.model','diphoModel.model']
+paramSets = None
+dataFrame = 'dataTotal.pkl'
+# dataFrame = None
+sigFrame  = 'signifTotal.pkl'
+# sigFrame  = None
 
 #script    = 'dataMCcheckSidebands.py'
 #models    = ['altDiphoModel.model','diphoModel.model']
@@ -52,7 +52,7 @@ if __name__=='__main__':
     if dataFrame: 
       theCmd += '-d %s/%s/frames/%s '%(baseDir, year, dataFrame)
     if sigFrame: 
-      theCmd += '-s %s '%sigFrame
+      theCmd += '-s %s/%s/frames/%s '%(baseDir, year, sigFrame)
     if intLumi: 
       theCmd += '--intLumi %s '%intLumi
     if paramSets and models:

@@ -104,7 +104,7 @@ if not opts.dataFrame:
 
 #read in dataframe if above steps done before
 else:
-  dataTotal = pd.read_pickle('%s/%s'%(frameDir,opts.dataFrame))
+  dataTotal = pd.read_pickle(opts.dataFrame)
   print 'Successfully loaded the dataframe'
 
 
@@ -131,7 +131,7 @@ if not opts.signifFrame:
 
 else:
   #read in already cleaned up signal frame
-  trainTotal = pd.read_pickle('%s/%s'%(frameDir,opts.signifFrame))
+  trainTotal = pd.read_pickle(opts.signifFrame)
 
 #define the variables used as input to the classifier
 diphoX  = trainTotal[diphoVars].values

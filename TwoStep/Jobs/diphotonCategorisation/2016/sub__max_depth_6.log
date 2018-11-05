@@ -5,3 +5,46 @@ sigSumW 57.832657
 bkgSumW 49470.542969
 ratio 0.001169
 about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_6.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__max_depth_6.model
+Default training performance:
+area under roc curve for training set = 0.806
+area under roc curve for test set     = 0.809
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 0 = 0.823
+area under test roc curve, iteration 0 = 0.810
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 1 = 0.818
+area under test roc curve, iteration 1 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 2 = 0.815
+area under test roc curve, iteration 2 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 3 = 0.818
+area under test roc curve, iteration 3 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 4 = 0.823
+area under test roc curve, iteration 4 = 0.814
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 5 = 0.820
+area under test roc curve, iteration 5 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 6 = 0.819
+area under test roc curve, iteration 6 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 7 = 0.822
+area under test roc curve, iteration 7 = 0.811
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 8 = 0.819
+area under test roc curve, iteration 8 = 0.812
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 9 = 0.820
+area under test roc curve, iteration 9 = 0.814
+Mean = (train)  0.819721289579
+Mean = (test)  0.813964697264
+Standard deviation (test) =  0.00218567285304
+Failure..
+/srv/localstage/scratch/4845997.1.hep.q

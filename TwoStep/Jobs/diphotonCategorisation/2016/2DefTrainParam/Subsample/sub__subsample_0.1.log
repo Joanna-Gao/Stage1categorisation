@@ -1,0 +1,47 @@
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams subsample:0.1
+Successfully loaded the dataframe
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__subsample_0.1.model
+Default training performance:
+area under roc curve for training set = 0.745
+area under roc curve for test set     = 0.740
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 0 = 0.745
+area under test roc curve, iteration 0 = 0.735
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 1 = 0.747
+area under test roc curve, iteration 1 = 0.738
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 2 = 0.746
+area under test roc curve, iteration 2 = 0.731
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 3 = 0.745
+area under test roc curve, iteration 3 = 0.742
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 4 = 0.747
+area under test roc curve, iteration 4 = 0.739
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 5 = 0.746
+area under test roc curve, iteration 5 = 0.734
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 6 = 0.741
+area under test roc curve, iteration 6 = 0.744
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 7 = 0.748
+area under test roc curve, iteration 7 = 0.741
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 8 = 0.747
+area under test roc curve, iteration 8 = 0.739
+jackknifing (DEFAULT MODEL):
+area under training roc curve, iteration 9 = 0.746
+area under test roc curve, iteration 9 = 0.743
+Mean = (train)  0.745940417094
+Mean = (test)  0.73870056632
+Standard deviation (test) =  0.00405935694371
+Failure..
+/srv/localstage/scratch/4790225.1.hep.q
