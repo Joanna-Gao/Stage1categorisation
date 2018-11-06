@@ -6,42 +6,43 @@ bkgSumW 49470.542969
 ratio 0.001169
 about to train diphoton BDT
 done
-saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+about to train alternative diphoton BDT
+done
 Default training performance:
-area under roc curve for training set = 0.810
-area under roc curve for test set     = 0.809
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 0 = 0.814
-area under test roc curve, iteration 0 = 0.807
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 1 = 0.810
-area under test roc curve, iteration 1 = 0.818
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 2 = 0.810
-area under test roc curve, iteration 2 = 0.802
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 3 = 0.810
-area under test roc curve, iteration 3 = 0.820
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 4 = 0.811
-area under test roc curve, iteration 4 = 0.809
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 5 = 0.810
-area under test roc curve, iteration 5 = 0.807
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 6 = 0.807
-area under test roc curve, iteration 6 = 0.810
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 7 = 0.813
-area under test roc curve, iteration 7 = 0.806
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 8 = 0.813
-area under test roc curve, iteration 8 = 0.807
-jackknifing (DEFAULT MODEL):
-area under training roc curve, iteration 9 = 0.808
-area under test roc curve, iteration 9 = 0.810
-Mean = (train)  0.810687594039
-Mean = (test)  0.809407819925
-Standard deviation (test) =  0.00511788089071
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.807
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 0 = 0.836
+area under test roc curve, iteration 0 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 1 = 0.832
+area under test roc curve, iteration 1 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 2 = 0.837
+area under test roc curve, iteration 2 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 3 = 0.838
+area under test roc curve, iteration 3 = 0.812
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 4 = 0.836
+area under test roc curve, iteration 4 = 0.814
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 5 = 0.838
+area under test roc curve, iteration 5 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 6 = 0.835
+area under test roc curve, iteration 6 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 7 = 0.835
+area under test roc curve, iteration 7 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 8 = 0.833
+area under test roc curve, iteration 8 = 0.825
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 9 = 0.837
+area under test roc curve, iteration 9 = 0.813
+Mean = (train)  0.835707089804
+Mean = (test)  0.815672063053
+Standard deviation (test) =  0.00348832936286
 Failure..
-/srv/localstage/scratch/4845549.1.hep.q
+/srv/localstage/scratch/5071023.1.hep.q

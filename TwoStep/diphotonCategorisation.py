@@ -152,7 +152,7 @@ testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  
 trainParams = {}
 trainParams['objective'] = 'binary:logistic'
 trainParams['nthread'] = 1
-# trainParams['max_depth'] = 8
+trainParams['lambda'] = 0.6
 trainParams['eta'] = 0.6
 paramExt = ''
 if opts.trainParams:
@@ -166,25 +166,25 @@ if opts.trainParams:
 print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
-
+'''
 #save it
 modelDir = trainDir.replace('trees','models')
 if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-
+'''
 
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
 altDiphoModel = xg.train(trainParams, altTrainingDipho)
 print 'done'
-
+'''
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
-
+'''
 
 #check performance of each training
 diphoPredYxcheck = diphoModel.predict(trainingDipho)
