@@ -8,6 +8,8 @@
 
 
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 x = range(6, 12)  # max depth of the BDT

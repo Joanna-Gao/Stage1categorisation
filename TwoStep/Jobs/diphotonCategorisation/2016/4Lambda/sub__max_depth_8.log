@@ -1,0 +1,66 @@
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+about to train alternative diphoton BDT
+done
+Default training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.807
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 0 = 0.836
+area under test roc curve, iteration 0 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 1 = 0.832
+area under test roc curve, iteration 1 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 2 = 0.837
+area under test roc curve, iteration 2 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 3 = 0.838
+area under test roc curve, iteration 3 = 0.812
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 4 = 0.836
+area under test roc curve, iteration 4 = 0.814
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 5 = 0.838
+area under test roc curve, iteration 5 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 6 = 0.835
+area under test roc curve, iteration 6 = 0.816
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 7 = 0.835
+area under test roc curve, iteration 7 = 0.815
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 8 = 0.833
+area under test roc curve, iteration 8 = 0.825
+jackknifing (Alt MODEL):
+area under training roc curve, iteration 9 = 0.837
+area under test roc curve, iteration 9 = 0.813
+Mean = (train)  0.835707089804
+Mean = (test)  0.815672063053
+Standard deviation (test) =  0.00348832936286
+Failure..
+/srv/localstage/scratch/5071023.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 57.832657
+bkgSumW 49470.542969
+ratio 0.001169
+about to train diphoton BDT
+done
+about to train alternative diphoton BDT
+done
+Default training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.800
+Alternative training performance:
+area under roc curve for training set = 0.838
+area under roc curve for test set     = 0.808
+Failure..
+/srv/localstage/scratch/5192331.1.hep.q

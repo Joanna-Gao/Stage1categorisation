@@ -3,6 +3,8 @@ import ROOT as r
 import numpy as np
 import pandas as pd
 import xgboost as xg
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pickle
 from sklearn.metrics import roc_auc_score, roc_curve
@@ -152,7 +154,6 @@ testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  
 trainParams = {}
 trainParams['objective'] = 'binary:logistic'
 trainParams['nthread'] = 1
-trainParams['lambda'] = 0.6
 trainParams['eta'] = 0.6
 paramExt = ''
 if opts.trainParams:
@@ -193,83 +194,90 @@ print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
 
-cutfr = 0.5 #fracton to keep for each jackknife iteration
-countvar = 0
-diLente = diphoTestX.shape[0]
-diLentr = diphoTrainX.shape[0]
-rocstest = []
-rocstrain = []
-
-while countvar <10:
-    # Using default model
-    diphoShufflete = np.random.permutation(diLente)  
-    diphoShuffletr = np.random.permutation(diLentr)
-    
-    TestX = diphoTestX[diphoShufflete][:int(diLente*cutfr)]
-    TestY = diphoTestY[diphoShufflete][:int(diLente*cutfr)]
-    TestFW = diphoTestFW[diphoShufflete][:int(diLente*cutfr)]
-    
-    TrainX = diphoTrainX[diphoShuffletr][:int(diLentr*cutfr)]
-    TrainY = diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)]
-    TrainTW = diphoTrainTW[diphoShuffletr][:int(diLentr*cutfr)]    
-    TrainAW = diphoTrainAW[diphoShuffletr][:int(diLentr*cutfr)]    
-    TrainFW = diphoTrainFW[diphoShuffletr][:int(diLentr*cutfr)]    
-
-    DefTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainTW, feature_names=diphoVars)
-    AltTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainAW, feature_names=diphoVars)
-    TestDMatrix = xg.DMatrix(TestX, label=diphoTestY[diphoShufflete][:int(diLente*cutfr)], weight=TestFW, feature_names=diphoVars)
-
-    diphoPredtrain = altDiphoModel.predict(DefTrainDMatrix)
-    diphoPredtest = altDiphoModel.predict(TestDMatrix)
-    
-    print 'jackknifing (Alt MODEL):'  
-    rocscoretrain = roc_auc_score(TrainY,diphoPredtrain, sample_weight=TrainFW)
-    rocscoretest = roc_auc_score(TestY, diphoPredtest, sample_weight=TestFW)
-    print 'area under training roc curve, iteration', countvar, '= %1.3f'%( rocscoretrain )
-    print 'area under test roc curve, iteration', countvar, '= %1.3f'%( rocscoretest )
-    rocstest.append(rocscoretest)
-    rocstrain.append(rocscoretrain)
-    countvar += 1
-
-print 'Mean = (train) ', np.mean(rocstrain)
-
-print 'Mean = (test) ', np.mean(rocstest)
-print 'Standard deviation (test) = ', np.std(rocstest)
+altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
+altDiphoPredY = altDiphoModel.predict(testingDipho)
+print 'Alternative training performance:'
+print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
+print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
 
 
-#altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
-#altDiphoPredY = altDiphoModel.predict(testingDipho)
-#print 'Alternative training performance:'
-#print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
-#print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
+# cutfr = 0.5 #fracton to keep for each jackknife iteration
+# countvar = 0
+# diLente = diphoTestX.shape[0]
+# diLentr = diphoTrainX.shape[0]
+# rocstest = []
+# rocstrain = []
+# 
+# while countvar <10:
+#     # Using default model
+#     diphoShufflete = np.random.permutation(diLente)  
+#     diphoShuffletr = np.random.permutation(diLentr)
+#     
+#     TestX = diphoTestX[diphoShufflete][:int(diLente*cutfr)]
+#     TestY = diphoTestY[diphoShufflete][:int(diLente*cutfr)]
+#     TestFW = diphoTestFW[diphoShufflete][:int(diLente*cutfr)]
+#     
+#     TrainX = diphoTrainX[diphoShuffletr][:int(diLentr*cutfr)]
+#     TrainY = diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)]
+#     TrainTW = diphoTrainTW[diphoShuffletr][:int(diLentr*cutfr)]    
+#     TrainAW = diphoTrainAW[diphoShuffletr][:int(diLentr*cutfr)]    
+#     TrainFW = diphoTrainFW[diphoShuffletr][:int(diLentr*cutfr)]    
+# 
+#     DefTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainTW, feature_names=diphoVars)
+#     AltTrainDMatrix = xg.DMatrix(TrainX, label=diphoTrainY[diphoShuffletr][:int(diLentr*cutfr)], weight=TrainAW, feature_names=diphoVars)
+#     TestDMatrix = xg.DMatrix(TestX, label=diphoTestY[diphoShufflete][:int(diLente*cutfr)], weight=TestFW, feature_names=diphoVars)
+# 
+#     diphoPredtrain = altDiphoModel.predict(DefTrainDMatrix)
+#     diphoPredtest = altDiphoModel.predict(TestDMatrix)
+#     
+#     print 'jackknifing (Alt MODEL):'  
+#     rocscoretrain = roc_auc_score(TrainY,diphoPredtrain, sample_weight=TrainFW)
+#     rocscoretest = roc_auc_score(TestY, diphoPredtest, sample_weight=TestFW)
+#     print 'area under training roc curve, iteration', countvar, '= %1.3f'%( rocscoretrain )
+#     print 'area under test roc curve, iteration', countvar, '= %1.3f'%( rocscoretest )
+#     rocstest.append(rocscoretest)
+#     rocstrain.append(rocscoretrain)
+#     countvar += 1
+# 
+# print 'Mean = (train) ', np.mean(rocstrain)
+# 
+# print 'Mean = (test) ', np.mean(rocstest)
+# print 'Standard deviation (test) = ', np.std(rocstest)
 
-exit("Plotting not working for now so exit")
+#exit("Plotting not working for now so exit")
 #make some plots 
 
 plotDir = trainDir.replace('trees','plots')
+if not path.isdir(plotDir):
+  system('mkdir -p %s'%plotDir)
 bkgEff, sigEff, nada = roc_curve(diphoTestY, diphoPredY, sample_weight=diphoTestFW)
 plt.figure(1)
-plt.plot(bkgEff, sigEff)
-plt.xlabel('Background efficiency')
-plt.ylabel('Signal efficiency')
-#plt.show()
-plt.savefig('%s/diphoROC.pdf'%plotDir)
+plt.plot(bkgEff, sigEff, label='Default Training')
+plt.xlabel('Background Efficiency')
+plt.ylabel('Signal Efficiency')
+#plt.savefig('%s/diphoROC.pdf'%plotDir)
+
 bkgEff, sigEff, nada = roc_curve(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW)
-plt.figure(2)
-plt.plot(bkgEff, sigEff)
-plt.xlabel('Background efficiency')
-plt.ylabel('Signal efficiency')
-#plt.show()
-plt.savefig('%s/altDiphoROC.pdf'%plotDir)
+#plt.figure(2)
+plt.plot(bkgEff, sigEff, label='Alternative Training')
+plt.plot([0,1], [0,1])
+# plt.xlabel('Background efficiency')
+# plt.ylabel('Signal efficiency')
+plt.legend(loc='lower right')
+plt.title('ROC Curve for Eta = 0.6, Max Depth = 8')
+plt.ylim(0,1)
+plt.savefig('%s/BothROC.pdf'%plotDir)
+exit("Plotting not working for now so exit")
+
 plt.figure(3)
 xg.plot_importance(diphoModel)
-#plt.show()
 plt.savefig('%s/diphoImportances.pdf'%plotDir)
+
 plt.figure(4)
 xg.plot_importance(altDiphoModel)
-#plt.show()
 plt.savefig('%s/altDiphoImportances.pdf'%plotDir)
 
+#exit("Plotting not working for now so exit")
 #draw sig vs background distribution
 nOutputBins = 50
 theCanv = useSty.setCanvas()
