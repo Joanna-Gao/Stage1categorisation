@@ -214,3 +214,680 @@ area under roc curve for training set = 0.837
 area under roc curve for test set     = 0.811
 Failure..
 /srv/localstage/scratch/5192567.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+done
+about to train alternative diphoton BDT
+done
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.801
+Alternative training performance:
+area under roc curve for training set = 0.839
+area under roc curve for test set     = 0.812
+Failure..
+/srv/localstage/scratch/5250171.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.810
+Alternative training performance:
+area under roc curve for training set = 0.837
+area under roc curve for test set     = 0.818
+Success!
+/srv/localstage/scratch/5250205.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+about to train alternative diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/altDiphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.815
+area under roc curve for test set     = 0.808
+Alternative training performance:
+area under roc curve for training set = 0.840
+area under roc curve for test set     = 0.814
+Failure..
+/srv/localstage/scratch/5250493.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Failure..
+/srv/localstage/scratch/5255158.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Failure..
+/srv/localstage/scratch/5255160.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+          candidate_id        weight       ...         jetWeight  altDiphoWeight
+23                   0  8.946369e-03       ...        135.963061        0.382128
+27                   0  8.882819e-03       ...        134.997245        0.417009
+62                   0  7.639460e-03       ...        116.101213        0.268743
+76                   0  8.327923e-03       ...        126.564176        0.088450
+81                   0  9.504483e-03       ...        144.445032        0.325430
+101                  0  9.152911e-03       ...        139.101986        0.450402
+102                  0  9.178572e-03       ...        139.491981        0.490766
+107                  0  1.049586e-02       ...        159.511524        0.447796
+123                  0  9.015027e-03       ...        137.006482        0.563106
+126                  0  9.319072e-03       ...        141.627229        0.544600
+127                  0  9.100252e-03       ...        138.301700        0.327319
+137                  0  8.838189e-03       ...        134.318979        0.246331
+138                  0  8.360986e-03       ...        127.066651        0.456552
+205                  0  7.515994e-04       ...         11.422483        0.026826
+222                  0  4.603134e-03       ...         69.956451        0.181653
+225                  0  8.987691e-03       ...        136.591052        0.489947
+230                  0  4.920427e-03       ...         74.778522        0.251579
+239                  0  8.667631e-03       ...        131.726916        0.561973
+242                  0  9.555524e-03       ...        145.220733        0.958185
+243                  0  1.022342e-02       ...        155.371087        0.832254
+260                  0  8.854602e-03       ...        134.568412        0.733614
+279                  0  1.014041e-02       ...        154.109626        0.742829
+304                  0  8.658011e-03       ...        131.580721        0.270768
+318                  0  8.574380e-03       ...        130.309720        0.423474
+358                  0  1.001124e-02       ...        152.146475        0.488304
+380                  0  8.596677e-03       ...        130.648592        0.459924
+381                  0  6.929993e-03       ...        105.319038        0.243703
+403                  0  1.048560e-02       ...        159.355549        0.494410
+409                  0  1.022703e-02       ...        155.426032        0.587370
+413                  0  9.645413e-03       ...        146.586819        0.258346
+...                ...           ...       ...               ...             ...
+16846435             0  6.305620e-04       ...          9.583009        0.033342
+16846436             0  3.121750e-03       ...         47.443009        0.239394
+16846440             0  1.655562e-03       ...         25.160514        0.066071
+16846441             0  7.263879e-04       ...         11.039330        0.044879
+16846442             0  3.412193e-04       ...          5.185704        0.020942
+16846443             0  6.220433e-04       ...          9.453546        0.050582
+16846445             0  6.208620e-04       ...          9.435593        0.065322
+16846449             0  6.040346e-04       ...          9.179858        0.043119
+16846455             0  5.637701e-04       ...          8.567935        0.021762
+16846456             0  3.398561e-04       ...          5.164986        0.040894
+16846460             0  5.351700e-04       ...          8.133282        0.025833
+16846461             0  5.761751e-04       ...          8.756460        0.041250
+16846466             0  1.756500e-03       ...         26.694523        0.078429
+16846468             0  3.099616e-04       ...          4.710662        0.013298
+16846479             0  6.238960e-04       ...          9.481702        0.034797
+16846482             0  3.374480e-03       ...         51.283893        0.419463
+16846483             0  6.367646e-04       ...          9.677274        0.074434
+16846486             0  2.703743e-04       ...          4.109032        0.006962
+16846494             0  3.233906e-04       ...          4.914751        0.025244
+16846502             0  6.235960e-04       ...          9.477143        0.017550
+16846505             0  6.166010e-04       ...          9.370835        0.013468
+16846513             0  3.378280e-04       ...          5.134164        0.014985
+16846515             0  3.201906e-04       ...          4.866118        0.025943
+16846522             0  1.452216e-03       ...         22.070146        0.108807
+16846523             0  3.189862e-04       ...          4.847814        0.042113
+16846524             0  3.116942e-04       ...          4.736994        0.014670
+16846528             0  1.395980e-06       ...          0.021216        0.000091
+16846532             0  3.214236e-03       ...         48.848566        0.343865
+16846535             0  3.013588e-04       ...          4.579921        0.017401
+16846536             0  2.788490e-07       ...          0.004238        0.000037
+
+[7552462 rows x 45 columns]
+Failure..
+/srv/localstage/scratch/5256517.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Index([u'candidate_id', u'weight', u'n_rec_jets', u'diphoptom', u'diphomva',
+       u'diphomvaxgb', u'leadmva', u'subleadmva', u'leadptom', u'subleadptom',
+       u'leadeta', u'subleadeta', u'CosPhi', u'vtxprob', u'sigmarv',
+       u'sigmawv', u'dijet_Mjj', u'dijet_leadEta', u'dijet_subleadEta',
+       u'dijet_subsubleadEta', u'dijet_LeadJPt', u'dijet_SubJPt',
+       u'dijet_SubsubJPt', u'dijet_leadPUMVA', u'dijet_subleadPUMVA',
+       u'dijet_subsubleadPUMVA', u'dijet_leadDeltaPhi',
+       u'dijet_subleadDeltaPhi', u'dijet_subsubleadDeltaPhi',
+       u'dijet_leadDeltaEta', u'dijet_subleadDeltaEta',
+       u'dijet_subsubleadDeltaEta', u'CMS_hgg_mass', u'stage1cat', u'lumi',
+       u'proc', u'diphopt', u'truthDipho', u'truthClass', u'reco',
+       u'normedWeight', u'diphoWeight', u'truthJets', u'jetWeight',
+       u'altDiphoWeight'],
+      dtype='object')
+Failure..
+/srv/localstage/scratch/5257518.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Failure..
+/srv/localstage/scratch/5257519.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+23           gjet
+27           gjet
+62           gjet
+76           gjet
+81           gjet
+101          gjet
+102          gjet
+107          gjet
+123          gjet
+126          gjet
+127          gjet
+137          gjet
+138          gjet
+205          gjet
+222          gjet
+225          gjet
+230          gjet
+239          gjet
+242          gjet
+243          gjet
+260          gjet
+279          gjet
+304          gjet
+318          gjet
+358          gjet
+380          gjet
+381          gjet
+403          gjet
+409          gjet
+413          gjet
+            ...  
+16846435    dipho
+16846436    dipho
+16846440    dipho
+16846441    dipho
+16846442    dipho
+16846443    dipho
+16846445    dipho
+16846449    dipho
+16846455    dipho
+16846456    dipho
+16846460    dipho
+16846461    dipho
+16846466    dipho
+16846468    dipho
+16846479    dipho
+16846482    dipho
+16846483    dipho
+16846486    dipho
+16846494    dipho
+16846502    dipho
+16846505    dipho
+16846513    dipho
+16846515    dipho
+16846522    dipho
+16846523    dipho
+16846524    dipho
+16846528    dipho
+16846532    dipho
+16846535    dipho
+16846536    dipho
+Name: proc, Length: 7552462, dtype: object
+Failure..
+/srv/localstage/scratch/5257522.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Failure..
+/srv/localstage/scratch/5257523.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Empty DataFrame
+Columns: [candidate_id, weight, n_rec_jets, diphoptom, diphomva, diphomvaxgb, leadmva, subleadmva, leadptom, subleadptom, leadeta, subleadeta, CosPhi, vtxprob, sigmarv, sigmawv, dijet_Mjj, dijet_leadEta, dijet_subleadEta, dijet_subsubleadEta, dijet_LeadJPt, dijet_SubJPt, dijet_SubsubJPt, dijet_leadPUMVA, dijet_subleadPUMVA, dijet_subsubleadPUMVA, dijet_leadDeltaPhi, dijet_subleadDeltaPhi, dijet_subsubleadDeltaPhi, dijet_leadDeltaEta, dijet_subleadDeltaEta, dijet_subsubleadDeltaEta, CMS_hgg_mass, stage1cat, lumi, proc, diphopt, truthDipho, truthClass, reco, normedWeight, diphoWeight, truthJets, jetWeight, altDiphoWeight]
+Index: []
+Failure..
+/srv/localstage/scratch/5257524.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+        candidate_id    weight       ...        jetWeight  altDiphoWeight
+0                  0  0.000265       ...         1.871886       12.266967
+1                  0  0.000275       ...         0.919947       27.872524
+2                  0 -0.000312       ...         1.042861       28.367804
+3                  0  0.000264       ...         0.882630       17.915415
+4                  0  0.000271       ...         4.125881       26.341877
+5                  0  0.000183       ...         2.775207       13.502098
+6                  0  0.000202       ...         0.676209        9.289813
+7                  0  0.000266       ...         1.883105       23.090446
+9                  0  0.000306       ...         1.020978       31.180648
+10                 0  0.000317       ...         1.057910       27.951013
+11                 0 -0.000040       ...         0.282797        1.726753
+13                 0  0.000099       ...         1.510262        9.705714
+14                 0  0.000149       ...         1.054279       16.126169
+15                 0  0.000263       ...         0.879333       10.717105
+16                 0  0.000304       ...         2.149839       15.849846
+17                 0  0.000265       ...         0.885612       21.273515
+19                 0  0.000295       ...         0.984674       26.723367
+21                 0  0.000312       ...         4.735138       28.344348
+22                 0 -0.000262       ...         0.875642       10.775967
+23                 0  0.000277       ...         0.925439       15.742681
+24                 0  0.000266       ...         1.876798       26.108453
+26                 0 -0.000248       ...         1.754821       12.035604
+27                 0  0.000307       ...         2.172643       17.551157
+28                 0  0.000264       ...         1.863727       14.301841
+29                 0  0.000299       ...         1.000198       31.785087
+30                 0 -0.000230       ...         1.625490       10.935473
+31                 0  0.000267       ...         0.892285       28.507289
+32                 0 -0.000246       ...         0.821492        5.030818
+33                 0  0.000264       ...         0.881907       13.711375
+34                 0 -0.000274       ...         1.936785       11.081612
+...              ...       ...       ...              ...             ...
+414540             0  0.000272       ...         0.909426       19.191976
+414541             0  0.000280       ...         0.933790        9.617298
+414542             0 -0.000275       ...         1.944401       32.530832
+414543             0 -0.000274       ...         1.939637       10.532605
+414544             0 -0.000285       ...         0.950920       12.761737
+414545             0  0.000194       ...         1.371587        4.610968
+414546             0 -0.000278       ...         0.928642       11.216218
+414547             0  0.000288       ...         2.037523       24.573188
+414548             0  0.000272       ...         1.920372       10.857895
+414549             0  0.000203       ...         0.678516        7.307627
+414552             0  0.000311       ...         4.722851       37.349934
+414553             0 -0.000273       ...         1.927205       21.104856
+414554             0  0.000280       ...         1.980862       17.271128
+414555             0  0.000266       ...         0.887053       28.517923
+414556             0  0.000264       ...         1.868688       12.777127
+414557             0 -0.000265       ...         1.872375       12.040235
+414558             0  0.000269       ...         4.085121       26.877304
+414559             0  0.000228       ...         0.761973       10.047108
+414560             0  0.000231       ...         0.771174       12.058137
+414562             0 -0.000274       ...         4.157018       13.411840
+414563             0  0.000318       ...         4.839247       30.305233
+414564             0  0.000269       ...         0.898731       16.042180
+414565             0  0.000228       ...         0.762269       12.707251
+414566             0  0.000340       ...         2.399597       16.339524
+414567             0 -0.000249       ...         3.778786       14.343044
+414568             0  0.000264       ...         0.881677       15.252987
+414569             0 -0.000151       ...         2.297293       16.693017
+414571             0  0.000272       ...         1.924238        8.646006
+414572             0  0.000301       ...         1.003755       26.394666
+414573             0  0.000116       ...         0.388403        4.956048
+
+[348778 rows x 45 columns]
+Failure..
+/srv/localstage/scratch/5257525.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+0         ggh
+1         ggh
+2         ggh
+3         ggh
+4         ggh
+5         ggh
+6         ggh
+7         ggh
+9         ggh
+10        ggh
+11        ggh
+13        ggh
+14        ggh
+15        ggh
+16        ggh
+17        ggh
+19        ggh
+21        ggh
+22        ggh
+23        ggh
+24        ggh
+26        ggh
+27        ggh
+28        ggh
+29        ggh
+30        ggh
+31        ggh
+32        ggh
+33        ggh
+34        ggh
+         ... 
+414540    ggh
+414541    ggh
+414542    ggh
+414543    ggh
+414544    ggh
+414545    ggh
+414546    ggh
+414547    ggh
+414548    ggh
+414549    ggh
+414552    ggh
+414553    ggh
+414554    ggh
+414555    ggh
+414556    ggh
+414557    ggh
+414558    ggh
+414559    ggh
+414560    ggh
+414562    ggh
+414563    ggh
+414564    ggh
+414565    ggh
+414566    ggh
+414567    ggh
+414568    ggh
+414569    ggh
+414571    ggh
+414572    ggh
+414573    ggh
+Name: proc, Length: 348778, dtype: object
+Failure..
+/srv/localstage/scratch/5257526.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Series([], Name: proc, dtype: object)
+Failure..
+/srv/localstage/scratch/5257527.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+18       qcd
+32       qcd
+84       qcd
+104      qcd
+136      qcd
+177      qcd
+205      qcd
+247      qcd
+267      qcd
+292      qcd
+315      qcd
+319      qcd
+343      qcd
+364      qcd
+365      qcd
+399      qcd
+459      qcd
+463      qcd
+525      qcd
+527      qcd
+539      qcd
+552      qcd
+559      qcd
+564      qcd
+568      qcd
+588      qcd
+604      qcd
+627      qcd
+628      qcd
+696      qcd
+        ... 
+90217    qcd
+90223    qcd
+90224    qcd
+90228    qcd
+90234    qcd
+90235    qcd
+90248    qcd
+90253    qcd
+90267    qcd
+90274    qcd
+90282    qcd
+90286    qcd
+90299    qcd
+90301    qcd
+90304    qcd
+90307    qcd
+90325    qcd
+90329    qcd
+90334    qcd
+90335    qcd
+90356    qcd
+90369    qcd
+90374    qcd
+90384    qcd
+90395    qcd
+90399    qcd
+90415    qcd
+90420    qcd
+90423    qcd
+90434    qcd
+Name: proc, Length: 5609, dtype: object
+Failure..
+/srv/localstage/scratch/5257528.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+Failure..
+/srv/localstage/scratch/5257529.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Failure..
+/srv/localstage/scratch/5257530.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+517         dipho
+723         dipho
+1134        dipho
+1408        dipho
+2252        dipho
+2351        dipho
+2657        dipho
+3355        dipho
+4042        dipho
+4547        dipho
+4694        dipho
+4698        dipho
+4755        dipho
+5194        dipho
+5704        dipho
+5994        dipho
+6467        dipho
+7067        dipho
+7288        dipho
+7803        dipho
+8126        dipho
+8438        dipho
+8807        dipho
+9007        dipho
+9427        dipho
+9776        dipho
+10265       dipho
+10328       dipho
+11114       dipho
+11283       dipho
+            ...  
+16846435    dipho
+16846436    dipho
+16846440    dipho
+16846441    dipho
+16846442    dipho
+16846443    dipho
+16846445    dipho
+16846449    dipho
+16846455    dipho
+16846456    dipho
+16846460    dipho
+16846461    dipho
+16846466    dipho
+16846468    dipho
+16846479    dipho
+16846482    dipho
+16846483    dipho
+16846486    dipho
+16846494    dipho
+16846502    dipho
+16846505    dipho
+16846513    dipho
+16846515    dipho
+16846522    dipho
+16846523    dipho
+16846524    dipho
+16846528    dipho
+16846532    dipho
+16846535    dipho
+16846536    dipho
+Name: proc, Length: 5831536, dtype: object 23         gjet
+27         gjet
+62         gjet
+76         gjet
+81         gjet
+101        gjet
+102        gjet
+107        gjet
+123        gjet
+126        gjet
+127        gjet
+137        gjet
+138        gjet
+205        gjet
+222        gjet
+225        gjet
+230        gjet
+239        gjet
+242        gjet
+243        gjet
+260        gjet
+279        gjet
+304        gjet
+318        gjet
+358        gjet
+380        gjet
+381        gjet
+403        gjet
+409        gjet
+413        gjet
+           ... 
+6595590    gjet
+6595591    gjet
+6595592    gjet
+6595596    gjet
+6595601    gjet
+6595602    gjet
+6595613    gjet
+6595615    gjet
+6595616    gjet
+6595627    gjet
+6595632    gjet
+6595634    gjet
+6595636    gjet
+6595643    gjet
+6595647    gjet
+6595650    gjet
+6595652    gjet
+6595655    gjet
+6595656    gjet
+6595659    gjet
+6595662    gjet
+6595665    gjet
+6595666    gjet
+6595667    gjet
+6595670    gjet
+6595671    gjet
+6595681    gjet
+6595683    gjet
+6595684    gjet
+6595686    gjet
+Name: proc, Length: 1366539, dtype: object
+Failure..
+/srv/localstage/scratch/5257531.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+[0.00112839 0.00491902 0.00579109 ... 0.00303784 0.00533855 0.00195381]
+Failure..
+/srv/localstage/scratch/5298569.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+[0.00414209 0.00362614 0.00685349 ... 0.00385089 0.01026273 0.0068459 ]
+Failure..
+/srv/localstage/scratch/5298579.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'dipho' ... 'dipho' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.816
+area under roc curve for test set     = 0.809
+Failure..
+/srv/localstage/scratch/5298606.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'dipho' ... 'dipho' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.815
+area under roc curve for test set     = 0.807
+Failure..
+/srv/localstage/scratch/5298608.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'ggh' 'dipho' ... 'dipho' 'dipho' 'ggh']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.816
+area under roc curve for test set     = 0.804
+Failure..
+/srv/localstage/scratch/5298626.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'gjet' ... 'dipho' 'gjet' 'gjet']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.817
+Failure..
+/srv/localstage/scratch/5298627.1.hep.q

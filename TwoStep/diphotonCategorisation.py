@@ -113,6 +113,10 @@ else:
   trainTotal = pd.read_pickle(opts.dataFrame)
   print 'Successfully loaded the dataframe'
 
+# testdf1 =  trainTotal.loc[trainTotal['proc'] == 'dipho']
+# testdf2 = trainTotal.loc[trainTotal['proc'] == 'gjet']
+# print testdf1['proc'], testdf2['proc']
+# exit("Plotting not working for now so exit")
 sigSumW = np.sum( trainTotal[trainTotal.stage1cat>0.01]['weight'].values )
 bkgSumW = np.sum( trainTotal[trainTotal.stage1cat==0]['weight'].values )
 print 'sigSumW %.6f'%sigSumW
@@ -132,6 +136,7 @@ diphoTW = trainTotal['diphoWeight'].values
 diphoAW = trainTotal['altDiphoWeight'].values
 diphoFW = trainTotal['weight'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
+diphoProc = trainTotal['proc'].values
 del trainTotal
 
 diphoX  = diphoX[diphoShuffle] #shuffle indicies to mix up the production modes - going to split into training/test datasets so don't want
@@ -140,6 +145,7 @@ diphoTW = diphoTW[diphoShuffle]
 diphoAW = diphoAW[diphoShuffle]
 diphoFW = diphoFW[diphoShuffle]
 diphoM  = diphoM[diphoShuffle]
+diphoProc = diphoProc[diphoShuffle]
 
 diphoTrainX,  diphoValidX,  diphoTestX  = np.split( diphoX,  [diphoTrainLimit,diphoValidLimit] ) #splits dataset into training/validation/test
 diphoTrainY,  diphoValidY,  diphoTestY  = np.split( diphoY,  [diphoTrainLimit,diphoValidLimit] )
@@ -147,6 +153,8 @@ diphoTrainTW, diphoValidTW, diphoTestTW = np.split( diphoTW, [diphoTrainLimit,di
 diphoTrainAW, diphoValidAW, diphoTestAW = np.split( diphoAW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainFW, diphoValidFW, diphoTestFW = np.split( diphoFW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainM,  diphoValidM,  diphoTestM  = np.split( diphoM,  [diphoTrainLimit,diphoValidLimit] )
+diphoTrainProc,  diphoValidProc,  diphoTestProc  = np.split( diphoProc,  [diphoTrainLimit,diphoValidLimit] )
+print diphoTestProc
 
 #build the background discrimination BDT
 trainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainTW, feature_names=diphoVars)
@@ -167,21 +175,21 @@ if opts.trainParams:
 print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
-'''
+
 #save it
 modelDir = trainDir.replace('trees','models')
 if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-'''
 
+'''
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
 altDiphoModel = xg.train(trainParams, altTrainingDipho)
 print 'done'
-'''
+
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
@@ -193,13 +201,13 @@ diphoPredY = diphoModel.predict(testingDipho)
 print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
-
+'''
 altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
 altDiphoPredY = altDiphoModel.predict(testingDipho)
 print 'Alternative training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
-
+'''
 
 # cutfr = 0.5 #fracton to keep for each jackknife iteration
 # countvar = 0
@@ -250,6 +258,8 @@ print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY
 plotDir = trainDir.replace('trees','plots')
 if not path.isdir(plotDir):
   system('mkdir -p %s'%plotDir)
+
+'''
 bkgEff, sigEff, nada = roc_curve(diphoTestY, diphoPredY, sample_weight=diphoTestFW)
 plt.figure(1)
 plt.plot(bkgEff, sigEff, label='Default Training')
@@ -260,7 +270,7 @@ plt.ylabel('Signal Efficiency')
 bkgEff, sigEff, nada = roc_curve(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW)
 #plt.figure(2)
 plt.plot(bkgEff, sigEff, label='Alternative Training')
-plt.plot([0,1], [0,1])
+plt.plot([0,1], [0,1],'--',color='gray')
 # plt.xlabel('Background efficiency')
 # plt.ylabel('Signal efficiency')
 plt.legend(loc='lower right')
@@ -276,45 +286,84 @@ plt.savefig('%s/diphoImportances.pdf'%plotDir)
 plt.figure(4)
 xg.plot_importance(altDiphoModel)
 plt.savefig('%s/altDiphoImportances.pdf'%plotDir)
-
+'''
 #exit("Plotting not working for now so exit")
 #draw sig vs background distribution
 nOutputBins = 50
 theCanv = useSty.setCanvas()
-sigScoreW = diphoTestFW * (diphoTestY==1)
+sigScoreW = diphoTestFW * (diphoTestProc == 'ggh')
 sigScoreHist = r.TH1F('sigScoreHist', 'sigScoreHist', nOutputBins, 0., 1.)
 useSty.formatHisto(sigScoreHist)
 sigScoreHist.SetTitle('')
 sigScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 fill_hist(sigScoreHist, diphoPredY, weights=sigScoreW)
-bkgScoreW = diphoTestFW * (diphoTestY==0)
-bkgScoreHist = r.TH1F('bkgScoreHist', 'bkgScoreHist', nOutputBins, 0., 1.)
-useSty.formatHisto(bkgScoreHist)
-bkgScoreHist.SetTitle('')
-bkgScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
-fill_hist(bkgScoreHist, diphoPredY, weights=bkgScoreW)
+# bkgScoreW = diphoTestFW * (diphoTestY==0)
+bkgDiphoScoreW = diphoTestFW * (diphoTestProc=='dipho')
+bkgGjetScoreW = diphoTestFW * (diphoTestProc=='gjet')
+bkgQCDScoreW = diphoTestFW * (diphoTestProc=='qcd')
 
+# bkgScoreHist = r.TH1F('bkgScoreHist', 'bkgScoreHist', nOutputBins, 0., 1.)
+bkgDiphoScoreHist = r.TH1F('bkgDiphoScoreHist', 'bkgDiphoScoreHist', nOutputBins, 0., 1.)
+bkgGjetScoreHist = r.TH1F('bkgGjetScoreHist', 'bkgGjetScoreHist', nOutputBins, 0., 1.)
+bkgQCDScoreHist = r.TH1F('bkgQCDScoreHist', 'bkgQCDScoreHist', nOutputBins, 0., 1.)
+# useSty.formatHisto(bkgScoreHist)
+useSty.formatHisto(bkgDiphoScoreHist)
+useSty.formatHisto(bkgGjetScoreHist)
+useSty.formatHisto(bkgQCDScoreHist)
+# bkgScoreHist.SetTitle('')
+bkgDiphoScoreHist.SetTitle('')
+bkgGjetScoreHist.SetTitle('')
+bkgQCDScoreHist.SetTitle('')
+# bkgScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgDiphoScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgGjetScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgQCDScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+
+# fill_hist(bkgScoreHist, diphoPredY, weights=bkgScoreW)
+fill_hist(bkgDiphoScoreHist, diphoPredY, weights=bkgDiphoScoreW)
+fill_hist(bkgGjetScoreHist, diphoPredY, weights=bkgGjetScoreW)
+fill_hist(bkgQCDScoreHist, diphoPredY, weights=bkgQCDScoreW)
 
 #apply transformation to flatten ggH
 for iBin in range(1,nOutputBins+1):
     sigVal = sigScoreHist.GetBinContent(iBin)
-    bkgVal = bkgScoreHist.GetBinContent(iBin)
+    # bkgVal = bkgScoreHist.GetBinContent(iBin)
+    bkgDiphoVal = bkgDiphoScoreHist.GetBinContent(iBin)
+    bkgGjetVal =  bkgGjetScoreHist.GetBinContent(iBin)
+    bkgQCDVal =   bkgQCDScoreHist.GetBinContent(iBin)
     sigScoreHist.SetBinContent(iBin, 1.)
     if sigVal > 0.: 
-        bkgScoreHist.SetBinContent(iBin, bkgVal/sigVal)
+        # bkgScoreHist.SetBinContent(iBin, bkgVal/sigVal)
+        bkgDiphoScoreHist.SetBinContent(iBin, bkgDiphoVal/sigVal)       
+        bkgGjetScoreHist.SetBinContent(iBin, bkgGjetVal/sigVal)
+        bkgQCDScoreHist.SetBinContent(iBin, bkgQCDVal/sigVal)
+ 
     else:
-        bkgScoreHist.SetBinContent(iBin, 0)
-        
+        # bkgScoreHist.SetBinContent(iBin, 0)
+        bkgDiphoScoreHist.SetBinContent(iBin, 0)              
+        bkgGjetScoreHist.SetBinContent(iBin, 0)
+        bkgQCDScoreHist.SetBinContent(iBin, 0)
+
 sigScoreHist.Scale(1./sigScoreHist.Integral())
-bkgScoreHist.Scale(1./bkgScoreHist.Integral())
-sigScoreHist.SetLineColor(r.kBlue)
+# bkgScoreHist.Scale(1./bkgScoreHist.Integral())
+bkgDiphoScoreHist.Scale(1./bkgDiphoScoreHist.Integral())
+bkgGjetScoreHist.Scale(1./bkgGjetScoreHist.Integral())
+bkgQCDScoreHist.Scale(1./bkgQCDScoreHist.Integral())
+sigScoreHist.SetLineColor(r.kRed)
 sigScoreHist.Draw('hist')
-bkgScoreHist.SetLineColor(r.kRed)
-bkgScoreHist.Draw('hist,same')
+# bkgScoreHist.SetLineColor(r.kRed)
+bkgDiphoScoreHist.SetLineColor(r.kBlue)
+bkgGjetScoreHist.SetLineColor(r.kGreen)
+bkgQCDScoreHist.SetLineColor(r.kGray)
+# bkgScoreHist.Draw('hist,same')
+bkgDiphoScoreHist.Draw('hist,same')
+bkgGjetScoreHist.Draw('hist,same')
+bkgQCDScoreHist.Draw('hist,same')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='35.9 fb^{-1}')
 theCanv.SaveAs('%s/outputScores.pdf'%plotDir)
 
+exit("Plotting not working for now so exit")
 #draw sig vs background distribution
 theCanv = useSty.setCanvas()
 sigScoreW = diphoTestFW * (diphoTestY==1)
