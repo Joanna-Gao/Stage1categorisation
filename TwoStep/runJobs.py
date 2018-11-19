@@ -5,7 +5,7 @@ dryRun = False
 #dryRun = True
 
 myDir = getcwd()
-baseDir = '/vols/cms/es811/Stage1categorisation'
+baseDir = '/home/hep/jg4814/CMSSW_10_2_0'
 #years = ['2016','2017']
 
 years = ['2016']
@@ -14,10 +14,17 @@ intLumi = 35.9
 #years = ['2017']
 #intLumi = 41.5
 
-script    = 'diphotonCategorisation.py'
-paramSets = [None,'max_depth:3','max_depth:4','max_depth:5','max_depth:10','eta:0.1','eta:0.5','lambda:0']
+#script    = 'diphotonCategorisation.py'
+#paramSets = [None,'max_depth:3','max_depth:4','max_depth:5','max_depth:10','eta:0.1','eta:0.5','lambda:0']
+#models    = None
+##dataFrame = 'trainTotal.pkl'
+#dataFrame = None
+#sigFrame  = None
+
+script    = 'nJetCategorisation.py'
+paramSets = ['max_depth:4','max_depth:5','max_depth:6','max_depth:7','max_depth:8','max_depth:9''max_depth:10','max_depth:11','max_depth:12']
 models    = None
-#dataFrame = 'trainTotal.pkl'
+#dataFrame = 'jetTotal.pkl'
 dataFrame = None
 sigFrame  = None
 
@@ -90,9 +97,9 @@ if __name__=='__main__':
     if 'VBF' in script: trainDir  = '%s/%s/ForVBF/trees'%(baseDir,year) #FIXME
     theCmd = 'python %s -t %s '%(script, trainDir)
     if dataFrame: 
-      theCmd += '-d %s '%dataFrame
+      theCmd += '-d %s/%s/frames/%s '%(baseDir, year, dataFrame)
     if sigFrame: 
-      theCmd += '-s %s '%sigFrame
+      theCmd += '-s %s/%s/frames/%s '%(baseDir, year, sigFrame)
     if intLumi: 
       theCmd += '--intLumi %s '%intLumi
     if paramSets and models:
