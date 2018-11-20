@@ -891,3 +891,198 @@ area under roc curve for training set = 0.813
 area under roc curve for test set     = 0.817
 Failure..
 /srv/localstage/scratch/5298627.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'gjet' ... 'dipho' 'gjet' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.816
+area under roc curve for test set     = 0.805
+Failure..
+/srv/localstage/scratch/5460337.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'dipho' ... 'dipho' 'ggh' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.813
+Failure..
+/srv/localstage/scratch/5472126.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'gjet' ... 'dipho' 'gjet' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.818
+area under roc curve for test set     = 0.806
+Failure..
+/srv/localstage/scratch/5473731.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'ggh' 'gjet' ... 'dipho' 'gjet' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.801
+Failure..
+/srv/localstage/scratch/5473733.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'gjet' ... 'dipho' 'gjet' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.818
+area under roc curve for test set     = 0.804
+Failure..
+/srv/localstage/scratch/5473740.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['gjet' 'dipho' 'dipho' ... 'dipho' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.815
+area under roc curve for test set     = 0.812
+Failure..
+/srv/localstage/scratch/5473819.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'ggh' ... 'gjet' 'dipho' 'gjet']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.807
+Failure..
+/srv/localstage/scratch/5473820.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'gjet' ... 'dipho' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.812
+Failure..
+/srv/localstage/scratch/5473821.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'dipho' ... 'gjet' 'dipho' 'gjet']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.806
+Failure..
+/srv/localstage/scratch/5473892.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'dipho' 'dipho' ... 'ggh' 'dipho' 'gjet']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.813
+area under roc curve for test set     = 0.816
+Failure..
+/srv/localstage/scratch/5473938.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['gjet' 'gjet' 'gjet' ... 'dipho' 'ggh' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.814
+area under roc curve for test set     = 0.812
+Failure..
+/srv/localstage/scratch/5473939.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['gjet' 'dipho' 'dipho' ... 'gjet' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.816
+area under roc curve for test set     = 0.813
+Failure..
+/srv/localstage/scratch/5474015.1.hep.q
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/2016/frames/trainTotal.pkl --intLumi 35.9 --trainParams max_depth:8
+Successfully loaded the dataframe
+sigSumW 50.446358
+bkgSumW 49867.625000
+ratio 0.001012
+['dipho' 'ggh' 'dipho' ... 'dipho' 'dipho' 'dipho']
+about to train diphoton BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/diphoModel__max_depth_8.model
+Default training performance:
+area under roc curve for training set = 0.817
+area under roc curve for test set     = 0.808
+Failure..
+/srv/localstage/scratch/5474017.1.hep.q
