@@ -1,2 +1,92 @@
 About to run the following command:
 python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9 --trainParams max_depth:5
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/jetTotal.pkl
+0J sum of weights is 30.557358, frac is 0.606560
+1J sum of weights is 13.625455, frac is 0.270464
+2J sum of weights is 6.195287, frac is 0.122976
+about to train jet counting BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/jetModel__max_depth_5.model
+reconstructed  number of jets =  [1. 1. 0. ... 1. 0. 5.]
+predicted      number of jets =  [1 0 0 ... 1 0 2]
+truth          number of jets =  [1 0 0 ... 1 0 2]
+
+predicted number of jets  =  [1 0 0 ... 1 0 2]
+reconstructed diphoton pt =  [ 66.5491998   42.27165946  17.46120643 ...  82.76887031  31.10821569
+ 119.99746999]
+predicted class           =  [2 0 0 ... 2 0 6]
+truth class               =  [2 0 0 ... 2 0 6]
+
+ratio for bin 1 is 1.0000000
+ratio for bin 2 is 0.2526623
+ratio for bin 3 is 0.1616271
+ratio for bin 4 is 0.0295538
+ratio for bin 5 is 0.0072440
+ratio for bin 6 is 0.0527648
+ratio for bin 7 is 0.0731935
+ratio for bin 8 is 0.0465389
+ratio for bin 9 is 0.0403181
+ratio for bin 1 is 1.0000000
+ratio for bin 2 is 0.2526623
+ratio for bin 3 is 0.1616271
+ratio for bin 4 is 0.0295538
+ratio for bin 5 is 0.0072440
+ratio for bin 6 is 0.0527648
+ratio for bin 7 is 0.0731935
+ratio for bin 8 is 0.0465389
+ratio for bin 9 is 0.0403181
+Area of the RUMP: 0.591780358191
+Success!
+/srv/localstage/scratch/5491243.1.hep.q
+About to run the following command:
+python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/2016/trees --intLumi 35.9 --trainParams max_depth:5
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/2016/frames/jetTotal.pkl
+0J sum of weights is 30.557358, frac is 0.606560
+1J sum of weights is 13.625455, frac is 0.270464
+2J sum of weights is 6.195287, frac is 0.122976
+about to train jet counting BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/2016/models/jetModel__max_depth_5.model
+reconstructed  number of jets =  [0. 2. 0. ... 0. 0. 0.]
+predicted      number of jets =  [0 2 0 ... 0 0 0]
+truth          number of jets =  [0 1 0 ... 0 0 0]
+
+predicted number of jets  =  [0 2 0 ... 0 0 0]
+reconstructed diphoton pt =  [13.72476694 75.89114747 21.62880844 ... 34.46834624 21.153605
+ 40.14941244]
+predicted class           =  [0 6 0 ... 0 0 0]
+truth class               =  [0 2 0 ... 0 0 0]
+
+ratio for bin 1 is 1.0000000
+ratio for bin 2 is 0.2503435
+ratio for bin 3 is 0.1618726
+ratio for bin 4 is 0.0305305
+ratio for bin 5 is 0.0093934
+ratio for bin 6 is 0.0479762
+ratio for bin 7 is 0.0671297
+ratio for bin 8 is 0.0462936
+ratio for bin 9 is 0.0336738
+ratio for bin 1 is 1.0000000
+ratio for bin 2 is 0.2503435
+ratio for bin 3 is 0.1618726
+ratio for bin 4 is 0.0305305
+ratio for bin 5 is 0.0093934
+ratio for bin 6 is 0.0479762
+ratio for bin 7 is 0.0671297
+ratio for bin 8 is 0.0462936
+ratio for bin 9 is 0.0336738
+Diagonal 692.916499132
+Success!
+/srv/localstage/scratch/5491292.1.hep.q

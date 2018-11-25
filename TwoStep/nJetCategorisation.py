@@ -393,26 +393,23 @@ for iBin in range(nClasses):
     catHistPred.GetYaxis().SetTitle('reco bin')
 
 missclassList = []
+diagValue = 0
 for iProc in range(nClasses):
-    diagValue = 0
-    offDiagTotal = 0
     for jProc in range(nClasses):
         procWeightReco = 100. * sumwProcCatMapReco[(iProc,jProc)] / sumwProcMap[iProc]
         procWeightPred = 100. * sumwProcCatMapPred[(iProc,jProc)] / sumwProcMap[iProc]
         catWeightReco  = 100. * sumwProcCatMapReco[(iProc,jProc)] / sumwCatMapReco[jProc]
         catWeightPred  = 100. * sumwProcCatMapPred[(iProc,jProc)] / sumwCatMapPred[jProc]
         if iProc == jProc:
-            diagValue = catWeightReco
-        else:
-            offDiagTotal += catWeightReco
+            diagValue += catWeightReco
         procHistReco.Fill(iProc, jProc, procWeightReco)
         procHistPred.Fill(iProc, jProc, procWeightPred)
         catHistReco.Fill(iProc, jProc, catWeightReco)
         catHistPred.Fill(iProc, jProc, catWeightPred)
-    ratio = offDiagTotal / diagValue
-    missclassList.append(ratio)
+#    ratio = (100 - diagValue) / 100
+#    missclassList.append(ratio)
 
-#print "MISSCLASSLIST", missclassList
+print "Diagonal", diagValue
 #draw the 2D hists
 canv = r.TCanvas()
 r.gStyle.SetPaintTextFormat('2.0f')
@@ -439,6 +436,7 @@ xg.plot_importance(jetModel)
 fig1.show()
 fig1.savefig('%s/classImportances%s.pdf'%(plotDir,paramExt))
 # plt.savefig('%s/classImportances%s.png'%(plotDir,paramExt))
+'''
 '''
 # Plot RUMP
 fig2 = plt.figure(2)
@@ -468,3 +466,4 @@ ax.grid(True)
 fig2.savefig('%s/RUMP%s.pdf'%(plotDir,paramExt))
 
 print 'Area of the RUMP:', areaRUMP
+'''

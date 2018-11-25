@@ -22,7 +22,7 @@ intLumi = 35.9
 #sigFrame  = None
 
 script    = 'nJetCategorisation.py'
-paramSets = ['max_depth:4','max_depth:5','max_depth:6','max_depth:7','max_depth:8','max_depth:9''max_depth:10','max_depth:11','max_depth:12']
+paramSets = ['max_depth:4','max_depth:5','max_depth:6','max_depth:7','max_depth:8','max_depth:9','max_depth:10','max_depth:11','max_depth:12']
 models    = None
 #dataFrame = 'jetTotal.pkl'
 dataFrame = None
