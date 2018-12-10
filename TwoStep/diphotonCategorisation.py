@@ -154,7 +154,6 @@ diphoTrainAW, diphoValidAW, diphoTestAW = np.split( diphoAW, [diphoTrainLimit,di
 diphoTrainFW, diphoValidFW, diphoTestFW = np.split( diphoFW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainM,  diphoValidM,  diphoTestM  = np.split( diphoM,  [diphoTrainLimit,diphoValidLimit] )
 diphoTrainProc,  diphoValidProc,  diphoTestProc  = np.split( diphoProc,  [diphoTrainLimit,diphoValidLimit] )
-print diphoTestProc
 
 #build the background discrimination BDT
 trainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainTW, feature_names=diphoVars)
@@ -162,7 +161,7 @@ testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  
 trainParams = {}
 trainParams['objective'] = 'binary:logistic'
 trainParams['nthread'] = 1
-trainParams['eta'] = 0.6
+#trainParams['max_depth'] = 8
 paramExt = ''
 if opts.trainParams:
   paramExt = '__'
@@ -172,6 +171,7 @@ if opts.trainParams:
     trainParams[key] = data
     paramExt += '%s_%s__'%(key,data)
   paramExt = paramExt[:-2]
+'''
 print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
@@ -182,7 +182,7 @@ if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-
+'''
 '''
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
@@ -193,7 +193,7 @@ print 'done'
 #save it
 altDiphoModel.save_model('%s/altDiphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/altDiphoModel%s.model'%(modelDir,paramExt)
-'''
+
 
 #check performance of each training
 diphoPredYxcheck = diphoModel.predict(trainingDipho)
@@ -201,7 +201,8 @@ diphoPredY = diphoModel.predict(testingDipho)
 print 'Default training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, diphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, diphoPredY, sample_weight=diphoTestFW) )
-'''
+
+
 altDiphoPredYxcheck = altDiphoModel.predict(trainingDipho)
 altDiphoPredY = altDiphoModel.predict(testingDipho)
 print 'Alternative training performance:'
@@ -276,7 +277,7 @@ plt.plot([0,1], [0,1],'--',color='gray')
 plt.legend(loc='lower right')
 plt.title('ROC Curve for Eta = 0.6, Max Depth = 8')
 plt.ylim(0,1)
-plt.savefig('%s/BothROC.pdf'%plotDir)
+plt.savefig('%s/BothROC_tuned.pdf'%plotDir)
 exit("Plotting not working for now so exit")
 
 plt.figure(3)
@@ -287,10 +288,39 @@ plt.figure(4)
 xg.plot_importance(altDiphoModel)
 plt.savefig('%s/altDiphoImportances.pdf'%plotDir)
 '''
-#exit("Plotting not working for now so exit")
-#draw sig vs background distribution
-nOutputBins = 20
 
+# Plot individual variables of the event
+nOutputBins = 50
+leadmvaHist = r.TH1F('leadmvaHist', 'leadmvaHist', nOutputBins, -1, 1)
+subleadmvaHist = r.TH1F('subleadmvaHist', 'subleadmvaHist', nOutputBins, -1, 1)
+leadptomHist = r.TH1F('leadptomHist', 'leadptomHist', nOutputBins, 0, 2.5)
+subleadptomHist = r.TH1F('subleadptomHist', 'subleadptomHist', nOutputBins, 0, 2.5)
+leadetaHist = r.TH1F('leadetaHist', 'leadetaHist', nOutputBins, -3.1, 3.1)
+subleadetaHist = r.TH1F('subleadetaHist', 'subleadetaHist', nOutputBins, -3.1, 3.1)
+CosPhiHist = r.TH1F('CosPhiHist', 'CosPhiHist', nOutputBins, -1, 1)
+vtxprobHist = r.TH1F('vtxprobHist', 'vtxprobHist', nOutputBins, 0, 1)
+sigmarvHist = r.TH1F('sigmarvHist', 'sigmarvHist', nOutputBins, 0, 0.3)
+sigmawvHist = r.TH1F('sigmawvHist', 'sigmawvHist', nOutputBins, 0, 0.3)
+listHist = [leadmvaHist,subleadmvaHist,leadptomHist,subleadptomHist,
+            leadetaHist,subleadetaHist,
+            CosPhiHist,vtxprobHist,sigmarvHist,sigmawvHist]
+for it in range(10):
+    theCanv = useSty.setCanvas()
+    useSty.formatHisto(listHist[it])
+    listHist[it].SetTitle('')
+    listHist[it].GetXaxis().SetTitle('%s'%diphoVars[it])
+    fill_hist(listHist[it], diphoX[:,it])
+    listHist[it].Scale(1./listHist[it].Integral())
+    listHist[it].SetFillColor(31)
+    listHist[it].Draw('hist')
+    useSty.drawCMS()
+    theCanv.SaveAs('%s/Parameters/%sHistogram.pdf'%(plotDir,diphoVars[it]))
+
+
+
+exit("Plotting not working for now so exit")
+#draw sig vs background stacked histogram
+nOutputBins = 20
 theCanv = useSty.setCanvas()
 sigScoreW = diphoTestFW * (diphoTestProc == 'ggh')
 sigScoreHist = r.TH1F('sigScoreHist', 'sigScoreHist', nOutputBins, 0., 1.)
@@ -323,7 +353,7 @@ bkgDiphoScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 bkgGjetScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 bkgQCDScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 
-# fill_hist(bkgScoreHist, diphoPredY, weights=bkgScoreW)
+# fill_hist(bkgScoreHist, altDiphoPredY, weights=bkgScoreW)
 fill_hist(bkgDiphoScoreHist, diphoPredY, weights=bkgDiphoScoreW)
 fill_hist(bkgGjetScoreHist, diphoPredY, weights=bkgGjetScoreW)
 fill_hist(bkgQCDScoreHist, diphoPredY, weights=bkgQCDScoreW)
@@ -389,7 +419,7 @@ legend.AddEntry(bkgGjetScoreHist,'GJet Background','f')
 legend.AddEntry(bkgQCDScoreHist,'QCD Background','f')
 legend.Draw()
 
-theCanv.SaveAs('%s/stackedHistogram.pdf'%plotDir)
+theCanv.SaveAs('%s/StackedHistogram_new.pdf'%plotDir)
 
 exit("Plotting not working for now so exit")
 #draw sig vs background distribution

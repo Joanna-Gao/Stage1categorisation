@@ -15,20 +15,20 @@ intLumi = 35.9
 #intLumi = 41.5
 
 script    = 'diphotonCategorisation.py'
-paramSets = ['max_depth:8']
-#paramSets = [None]
+#paramSets = ['eta:0.6']
+paramSets = [None]
 models    = None
 dataFrame = 'trainTotal.pkl'
 #dataFrame = None
 sigFrame  = None
 
 # script    = 'dataSignificances.py'
-# models    = ['diphoModel.model']  #'altDiphoModel.model',
+# models    =  ['diphoModel.model']  #['altDiphoModel.model']
 # paramSets = None
 # dataFrame = 'dataTotal.pkl'
 # # dataFrame = None
-# sigFrame  = 'signifTotal.pkl'
-# # sigFrame  = None
+# #sigFrame  = 'signifTotal.pkl'
+# sigFrame  = None
 
 #script    = 'dataMCcheckSidebands.py'
 #models    = ['altDiphoModel.model','diphoModel.model']

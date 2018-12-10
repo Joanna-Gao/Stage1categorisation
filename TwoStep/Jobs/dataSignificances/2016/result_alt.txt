@@ -1,0 +1,10 @@
+Default
+sub__altDiphoModel.log:6.08:
+sub__altDiphoModel.log:2.35:
+sub__altDiphoModel.log:2.59:
+sub__altDiphoModel.log:1.52:
+sub__altDiphoModel.log:1.27:
+sub__altDiphoModel.log:3.44:
+sub__altDiphoModel.log:1.37:
+sub__altDiphoModel.log:2.18:
+sub__altDiphoModel.log:3.61:

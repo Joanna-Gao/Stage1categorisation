@@ -1,0 +1,162 @@
+eta = 0.4, max_depth = 8
+sub__diphoModel.log:5.32:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:2.32:
+sub__diphoModel.log:1.44:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.63:
+sub__diphoModel.log:1.29:
+sub__diphoModel.log:1.97:
+sub__diphoModel.log:3.68:
+
+eta = 0.2, max_depth = 8
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.19:
+sub__diphoModel.log:2.27:
+sub__diphoModel.log:1.48:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.64:
+sub__diphoModel.log:1.27:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.68:
+
+eta = 0.6
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:2.25:
+sub__diphoModel.log:1.49:
+sub__diphoModel.log:1.24:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.33:
+sub__diphoModel.log:1.98:
+sub__diphoModel.log:3.67:
+
+eta = .8
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.10:
+sub__diphoModel.log:2.27:
+sub__diphoModel.log:1.51:
+sub__diphoModel.log:1.28:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.21:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.69:
+
+eta = .2
+sub__diphoModel.log:5.48:
+sub__diphoModel.log:2.08:
+sub__diphoModel.log:2.27:
+sub__diphoModel.log:1.47:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.20:
+sub__diphoModel.log:2.13:
+sub__diphoModel.log:3.68:
+
+Eta = .5
+sub__diphoModel.log:5.79:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:2.48:
+sub__diphoModel.log:1.51:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.34:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.74:
+
+eta = .3
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.10:
+sub__diphoModel.log:2.52:
+sub__diphoModel.log:1.45:
+sub__diphoModel.log:1.27:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.23:
+sub__diphoModel.log:2.08:
+sub__diphoModel.log:3.67:
+
+eta = .7
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:2.28:
+sub__diphoModel.log:1.47:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.25:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.70:
+
+eta = .6
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.10:
+sub__diphoModel.log:2.31:
+sub__diphoModel.log:1.39:
+sub__diphoModel.log:1.28:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.34:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.67:
+
+eta = .1
+sub__diphoModel.log:5.54:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:2.44:
+sub__diphoModel.log:1.52:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.20:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.68:
+
+eta = .5
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.10:
+sub__diphoModel.log:2.27:
+sub__diphoModel.log:1.45:
+sub__diphoModel.log:1.27:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.30:
+sub__diphoModel.log:2.09:
+sub__diphoModel.log:3.68:
+
+eta = .4
+sub__diphoModel.log:5.49:
+sub__diphoModel.log:2.10:
+sub__diphoModel.log:2.37:
+sub__diphoModel.log:1.45:
+sub__diphoModel.log:1.26:
+sub__diphoModel.log:0.65:
+sub__diphoModel.log:1.27:
+sub__diphoModel.log:2.15:
+sub__diphoModel.log:3.70:
+
+Default parameters
+sub__diphoModel.log:5.30:
+sub__diphoModel.log:1.90:
+sub__diphoModel.log:2.21:
+sub__diphoModel.log:1.35:
+sub__diphoModel.log:1.19:
+sub__diphoModel.log:0.62:
+sub__diphoModel.log:1.12:
+sub__diphoModel.log:1.97:
+sub__diphoModel.log:3.50:
+High Cut
+sub__diphoModel.log:0.026, Slo 473.69, Blo 7843.16, signifLo 5.30
+sub__diphoModel.log:0.026, Slo 79.78, Blo 1729.28, signifLo 1.90
+sub__diphoModel.log:0.011, Slo 58.62, Blo 3252.49, signifLo 1.02
+sub__diphoModel.log:0.029, Slo 15.71, Blo 127.72, signifLo 1.35
+sub__diphoModel.log:0.036, Slo 0.95, Blo 6.24, signifLo 0.31
+sub__diphoModel.log:0.027, Slo 12.73, Blo 413.54, signifLo 0.62
+sub__diphoModel.log:0.006, Slo 7.23, Blo 1644.47, signifLo 0.18
+sub__diphoModel.log:0.032, Slo 6.38, Blo 55.53, signifLo 0.82
+sub__diphoModel.log:0.023, Slo 11.47, Blo 61.72, signifLo 1.39
+Low Cut
+sub__diphoModel.log:0.230, Shi 0.00, Bhi 9999.00, signifHi 0.00
+sub__diphoModel.log:0.138, Shi 0.00, Bhi 9999.00, signifHi 0.00
+sub__diphoModel.log:0.032, Shi 30.42, Bhi 227.90, signifHi 1.96
+sub__diphoModel.log:0.709, Shi 0.00, Bhi 9999.00, signifHi 0.00
+sub__diphoModel.log:0.045, Shi 4.77, Bhi 12.80, signifHi 1.15
+sub__diphoModel.log:0.117, Shi 0.00, Bhi 9999.00, signifHi 0.00
+sub__diphoModel.log:0.026, Shi 28.55, Bhi 655.76, signifHi 1.10
+sub__diphoModel.log:0.036, Shi 18.64, Bhi 99.06, signifHi 1.79
+sub__diphoModel.log:0.093, Shi 13.27, Bhi 10.15, signifHi 3.21

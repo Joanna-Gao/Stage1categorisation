@@ -20,7 +20,7 @@ parser.add_option('-t','--trainDir', help='Directory for input files')
 parser.add_option('-d','--dataFrame', default=None, help='Name of dataframe if it already exists')
 parser.add_option('-s','--signifFrame', default=None, help='Name of cleaned signal dataframe if it already exists')
 parser.add_option('-m','--modelName', default=None, help='Name of model for testing')
-parser.add_option('-n','--nIterations', default=1000, help='Number of iterations to run for random significance optimisation')
+parser.add_option('-n','--nIterations', default=1, help='Number of iterations to run for random significance optimisation')
 parser.add_option('--intLumi',type='float', default=35.9, help='Integrated luminosity')
 (opts,args)=parser.parse_args()
 
@@ -159,6 +159,11 @@ diphoModel.load_model('%s/%s'%(modelDir,opts.modelName))
 diphoPredY = diphoModel.predict(diphoMatrix)
 dataPredY  = diphoModel.predict(dataMatrix)
 
+#Prepare for plotting
+plotDir = trainDir.replace('trees','plots')
+if not path.isdir(plotDir):
+  system('mkdir -p %s'%plotDir)
+
 #now estimate two-class significance
 printStr = ''
 lumi = opts.intLumi
@@ -182,9 +187,16 @@ for iProc in range(nClasses):
     fill_hist(sigHistHi, diphoM, weights=sigWeightsHi)
     sigCountHi = 0.68 * lumi * sigHistHi.Integral() 
     sigWidthHi = getRealSigma(sigHistHi)
+
+    #theCanv = useSty.setCanvas()
     bkgHistHi = r.TH1F('bkgHistHiTemp','bkgHistHiTemp',160,100,180)
     bkgWeightsHi = dataFW * (dataPredY>cutHi) * (dataR==iProc)
+    #useSty.formatHisto(bkgHistHi)
     fill_hist(bkgHistHi, dataM, weights=bkgWeightsHi)
+    #bkgHistHi.Draw('hist')
+    #theCanv.SaveAs('%s/bkdHistHi_Proc%d.pdf'%(plotDir, int(iProc)))
+
+
     bkgCountHi = computeBkg(bkgHistHi, sigWidthHi)
     theSignifHi = getAMS(sigCountHi, bkgCountHi)
     sigHistLo = r.TH1F('sigHistLoTemp','sigHistLoTemp',160,100,180)
@@ -192,10 +204,16 @@ for iProc in range(nClasses):
     fill_hist(sigHistLo, diphoM, weights=sigWeightsLo)
     sigCountLo = 0.68 * lumi * sigHistLo.Integral() 
     sigWidthLo = getRealSigma(sigHistLo)
-    #print 'sigwidth is %1.3f'%sigWidth
+    #print 'sigwidth is %1.3f'%sigWidth 
+    
+    #theCanv = useSty.setCanvas()
     bkgHistLo = r.TH1F('bkgHistLoTemp','bkgHistLoTemp',160,100,180)
-    bkgWeightsLo = dataFW * (dataPredY<cutHi) * (dataPredY>cutLo) * (dataR==iProc)
-    fill_hist(bkgHistLo, dataM, weights=bkgWeightsLo)
+    bkgWeightsLo = dataFW * (dataPredY<cutHi) * (dataPredY>cutLo) * (dataR==iProc)  
+    #useSty.formatHisto(bkgHistLo)
+    fill_hist(bkgHistLo, dataM, weights=bkgWeightsLo) 
+    #bkgHistLo.Draw('hist')
+    #theCanv.SaveAs('%s/bkdHistLo_Proc%d.pdf'%(plotDir, int(iProc)))
+
     bkgCountLo = computeBkg(bkgHistLo, sigWidthLo)
     theSignifLo = getAMS(sigCountLo, bkgCountLo)
     theSignif = np.sqrt( theSignifLo*theSignifLo + theSignifHi*theSignifHi )
@@ -214,6 +232,31 @@ for iProc in range(nClasses):
   printStr += 'cutLo %1.3f, Slo %1.2f, Blo %1.2f, signifLo %1.2f \n'%(bestCutLo,bestSlo,bestBlo,bestSignifLo)
   printStr += '\n'
 
+  # Plot the bgd High cut distribution for the best signif produced
+  theCanv = useSty.setCanvas()
+  bkgHistHi1 = r.TH1F('bkgHistHiTemp','bkgHistHiTemp',160,100,180) 
+  useSty.formatHisto(bkgHistHi1)
+  bkgWeightsHi1 = dataFW * (dataPredY>bestCutHi) * (dataR==iProc)
+  fill_hist(bkgHistHi1, dataM, weights=bkgWeightsHi1)
+  # Calculate fitting parameters
+  NDF = bkgHistHi1.GetFunction('expo').GetNDF()
+  Chisquare = bkgHistHi1.GetFunction('expo').Chisquare()
+  Prob = bkgHistHi1.GetFunction('expo').Prob()
+  # Accessories
+  bkgHistHi1.Draw('hist')
+  paveText = r.TPaveText(0.4,0.9,0.4,.9)
+  paveText.AddText('NDF: ', NDF)
+  paveText.Draw('same')  
+  theCanv.SaveAs('%s/bkdHistHi_Proc%d.pdf'%(plotDir, int(iProc)))
+
+  theCanv = useSty.setCanvas()
+  bkgHistLo1 = r.TH1F('bkgHistLoTemp','bkgHistLoTemp',160,100,180) 
+  useSty.formatHisto(bkgHistLo1)
+  bkgWeightsLo1 = dataFW * (dataPredY>bestCutLo) * (dataR==iProc)      
+  fill_hist(bkgHistLo1, dataM, weights=bkgWeightsLo1)
+  bkgHistLo1.Draw('hist')
+  theCanv.SaveAs('%s/bkdHistLo_Proc%d.pdf'%(plotDir, int(iProc))) 
+  
   #now do some checking that random search found a good minimum
   printStr += 'Stability check low cut (cutval,signif): \n'
   for cutLo in np.arange(bestCutLo-0.1, bestCutLo+0.1, 0.01): 
