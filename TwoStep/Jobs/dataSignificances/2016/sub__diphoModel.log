@@ -1,0 +1,238 @@
+About to run the following command:
+python dataSignificances.py -t /vols/cms/es811/Stage1categorisation/2016/trees --intLumi 35.9 --className jetModel.model -m diphoModel.model
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+Failure..
+/srv/localstage/scratch/5814533.1.hep.q
+About to run the following command:
+python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees --intLumi 35.9 --className jetModel.model -m diphoModel.model
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0//2016/frames/dataTotal.pkl
+Successfully loaded the signal dataframe
+About to add reco tag info
+Successfully added reco tag info
+frame saved as /home/hep/jg4814/CMSSW_10_2_0//2016/frames/signifTotal.pkl
+
+Results for bin 0 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.978
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.967
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 1 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.857
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.698
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 2 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.859
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.807
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 3 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.997
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.880
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 4 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.914
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.829
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 5 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.969
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.953
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 6 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.959
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.769
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 7 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.634
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.589
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 8 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.701
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.541
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+
+Success!
+/srv/localstage/scratch/5814809.1.hep.q
+About to run the following command:
+python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d dataTotal.pkl -s signifTotal.pkl --intLumi 35.9 --className jetModel.model -m diphoModel.model
+Failure..
+/srv/localstage/scratch/5814817.1.hep.q
+About to run the following command:
+python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d dataTotal.pkl -s signifTotal.pkl --intLumi 35.9 --className jetModel.model -m diphoModel.model
+Failure..
+/srv/localstage/scratch/5814819.1.hep.q
+About to run the following command:
+python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d dataTotal.pkl -s signifTotal.pkl --intLumi 35.9 --className jetModel.model -m diphoModel.model
+Successfully loaded the dataframe
+
+Results for bin 0 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.529
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.526
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 1 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.894
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.818
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 2 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.984
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.606
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 3 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.797
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.560
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 4 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.870
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.705
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 5 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.779
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.600
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 6 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.860
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.568
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 7 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.771
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.527
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 8 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.649
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.604
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+
+Success!
+/srv/localstage/scratch/5814821.1.hep.q
+About to run the following command:
+python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d dataTotal.pkl -s signifTotal.pkl --intLumi 35.9 --className jetModel.model -m diphoModel.model
+Successfully loaded the dataframe
+
+Results for bin 0 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.801
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.536
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 1 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.842
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.587
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 2 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.891
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.560
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 3 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.935
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.696
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 4 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.776
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.719
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 5 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.679
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.669
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 6 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.892
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.727
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 7 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.528
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.523
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+Results for bin 8 : 
+Category 0 optimal cuts are:  DiphotonBDT 0.884
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Category 1 optimal cuts are:  DiphotonBDT 0.664
+With  S 0.000,  B 9999.000,  signif = 0.000 
+Corresponding to a total significance of  0.000 
+
+
+Success!
+/srv/localstage/scratch/5814839.1.hep.q
