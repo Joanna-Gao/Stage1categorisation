@@ -429,14 +429,14 @@ prettyHist(catHistPred)
 catHistPred.Draw('colz,text')
 #canv.Print('%s/catJetHistPred%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/catJetHistPred%s.png'%(plotDir,paramExt))
-'''
+
 # get feature importances
 fig1 = plt.figure(1)
 xg.plot_importance(jetModel)
 fig1.show()
-fig1.savefig('%s/classImportances%s.pdf'%(plotDir,paramExt))
+#fig1.savefig('%s/classImportances%s.pdf'%(plotDir,paramExt))
 # plt.savefig('%s/classImportances%s.png'%(plotDir,paramExt))
-'''
+
 '''
 # Plot RUMP
 fig2 = plt.figure(2)
