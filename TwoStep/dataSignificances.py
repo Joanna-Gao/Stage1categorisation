@@ -157,16 +157,27 @@ diphoJ  = trainTotal['truthClass'].values
 diphoFW = trainTotal['weight'].values
 diphoS  = trainTotal['stage1cat'].values
 diphoP  = trainTotal['diphopt'].values
-diphoR  = trainTotal['reco'].values
+diphoR1  = trainTotal['reco'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
+
+testdf1 =  trainTotal.loc[trainTotal['truthClass'] == 4]
+
+#print "Truth Dipho: ", diphoY
+#print "testdf1 ", testdf1['truthClass']
+#print "reco:", diphoR
+print "weights ", diphoFW
+print "diphoR1 ", diphoR1
 
 dataX  = dataTotal[diphoVars].values
 dataI  = dataTotal[jetVars].values
 dataY  = np.zeros(dataX.shape[0])
 dataFW = np.ones(dataX.shape[0])
 dataP  = dataTotal['diphopt'].values
-dataR  = dataTotal['reco'].values
+dataR1  = dataTotal['reco'].values
 dataM  = dataTotal['CMS_hgg_mass'].values
+
+print "dataFW: ", dataFW
+print "dataR1 ", dataR1
 
 #setup matrices
 diphoMatrix = xg.DMatrix(diphoX, label=diphoY, weight=diphoFW, feature_names=diphoVars)
@@ -202,10 +213,20 @@ if opts.className:
 
 #now estimate two-class significance
 #set up parameters for the optimiser
-ranges = [ [0.5,1.] ]
+ranges = [ [0.,1.] ]
 names  = ['DiphotonBDT']
 printStr = ''
 
+# Calculating the true significance for each bin
+for iClass in range(nClasses):
+  sigWeights = diphoFW * (diphoY==1) * (diphoS-3==iClass)  * (diphoJ==iClass) * (diphoR1==iClass)
+  bkgWeights = dataFW * (dataR1==iClass)
+  optimiser = CatOptim(sigWeights, diphoM, [diphoMatrix], bkgWeights, dataM, [dataMatrix], 2, ranges, names)
+  optimiser.optimise(opts.intLumi, 100)
+  printStr += 'Truth significance results for bin %g : \n'%iClass
+  printStr += optimiser.getPrintableResult()
+
+'''
 for iClass in range(nClasses):
   sigWeights = diphoFW * (diphoJ==iClass) * (diphoR==iClass)
   bkgWeights = dataFW * (dataR==iClass)
@@ -213,6 +234,7 @@ for iClass in range(nClasses):
   optimiser.optimise(opts.intLumi, opts.nIterations)
   printStr += 'Results for bin %g : \n'%iClass
   printStr += optimiser.getPrintableResult()
+'''
 
 print
 print printStr
