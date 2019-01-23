@@ -117,7 +117,7 @@ if not opts.dataFrame:
 
 #read in dataframe if above steps done before
 else:
-  dataTotal = pd.read_pickle('%s/%s'%(frameDir,opts.dataFrame))
+  dataTotal = pd.read_pickle('%s'%opts.dataFrame)
   print 'Successfully loaded the dataframe'
 
 
@@ -147,7 +147,7 @@ if not opts.signifFrame:
 
 else:
   #read in already cleaned up signal frame
-  trainTotal = pd.read_pickle('%s/%s'%(frameDir,opts.signifFrame))
+  trainTotal = pd.read_pickle('%s'%opts.signifFrame)
 
 #define the variables used as input to the classifier
 diphoX  = trainTotal[diphoVars].values
@@ -157,27 +157,19 @@ diphoJ  = trainTotal['truthClass'].values
 diphoFW = trainTotal['weight'].values
 diphoS  = trainTotal['stage1cat'].values
 diphoP  = trainTotal['diphopt'].values
-diphoR1  = trainTotal['reco'].values
+diphoR  = trainTotal['reco'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
-
-testdf1 =  trainTotal.loc[trainTotal['truthClass'] == 4]
-
-#print "Truth Dipho: ", diphoY
-#print "testdf1 ", testdf1['truthClass']
-#print "reco:", diphoR
-print "weights ", diphoFW
-print "diphoR1 ", diphoR1
 
 dataX  = dataTotal[diphoVars].values
 dataI  = dataTotal[jetVars].values
 dataY  = np.zeros(dataX.shape[0])
 dataFW = np.ones(dataX.shape[0])
 dataP  = dataTotal['diphopt'].values
-dataR1  = dataTotal['reco'].values
+dataR  = dataTotal['reco'].values
 dataM  = dataTotal['CMS_hgg_mass'].values
 
 print "dataFW: ", dataFW
-print "dataR1 ", dataR1
+print "dataR ", dataR
 
 #setup matrices
 diphoMatrix = xg.DMatrix(diphoX, label=diphoY, weight=diphoFW, feature_names=diphoVars)
@@ -216,13 +208,13 @@ if opts.className:
 ranges = [ [0.,1.] ]
 names  = ['DiphotonBDT']
 printStr = ''
-
+'''
 # Calculating the true significance for each bin
 for iClass in range(nClasses):
-  sigWeights = diphoFW * (diphoY==1) * (diphoS-3==iClass)  * (diphoJ==iClass) * (diphoR1==iClass)
-  bkgWeights = dataFW * (dataR1==iClass)
-  optimiser = CatOptim(sigWeights, diphoM, [diphoMatrix], bkgWeights, dataM, [dataMatrix], 2, ranges, names)
-  optimiser.optimise(opts.intLumi, 100)
+  sigWeights = diphoFW * (diphoJ==iClass)
+  bkgWeights = dataFW * (dataR==iClass)
+  optimiser = CatOptim(sigWeights, diphoM, [diphoMatrix], bkgWeights, dataM, [dataMatrix], 2, ranges, names, iClass)
+  optimiser.optimise(opts.intLumi, opts.nIterations)
   printStr += 'Truth significance results for bin %g : \n'%iClass
   printStr += optimiser.getPrintableResult()
 
@@ -230,11 +222,11 @@ for iClass in range(nClasses):
 for iClass in range(nClasses):
   sigWeights = diphoFW * (diphoJ==iClass) * (diphoR==iClass)
   bkgWeights = dataFW * (dataR==iClass)
-  optimiser = CatOptim(sigWeights, diphoM, [diphoPredY], bkgWeights, dataM, [dataPredY], 2, ranges, names)
+  optimiser = CatOptim(sigWeights, diphoM, [diphoPredY], bkgWeights, dataM, [dataPredY], 2, ranges, names, iClass)
   optimiser.optimise(opts.intLumi, opts.nIterations)
   printStr += 'Results for bin %g : \n'%iClass
   printStr += optimiser.getPrintableResult()
-'''
+
 
 print
 print printStr

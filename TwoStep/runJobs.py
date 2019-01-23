@@ -23,18 +23,18 @@ intLumi = 35.9
 #sigFrame  = None
 
 #script    = 'nJetCategorisation.py'
-#paramSets = [None]
+#paramSets = ['eta:0.5']
 #models    = None
 #classModel = None
-##dataFrame = 'jetTotal.pkl'
-#dataFrame = None
+#dataFrame = 'jetTotal.pkl'
+##dataFrame = None
 #sigFrame  = None
 
 script    = 'dataSignificances.py'
-models    = ['diphoModel.model']#'altDiphoModel.model',
+models    = ['altDiphoModel.model']#'diphoModel.model',
 #paramSets = [None,'max_depth:3','max_depth:4','max_depth:5','max_depth:10','eta:0.1','eta:0.5','lambda:0']
 paramSets = [None]
-classModel = 'jetModel.model'
+classModel = 'jetModel__eta_0.5.model'
 for params in paramSets:
   if not params: continue
   params = params.split(',')
@@ -105,9 +105,9 @@ if __name__=='__main__':
     if 'VBF' in script: trainDir  = '%s/%s/ForVBF/trees'%(baseDir,year) #FIXME
     theCmd = 'python %s -t %s '%(script, trainDir)
     if dataFrame: 
-      theCmd += '-d %s '%dataFrame
+      theCmd += '-d %s/%s/frames/%s '%(baseDir, year, dataFrame) 
     if sigFrame: 
-      theCmd += '-s %s '%sigFrame
+      theCmd += '-s %s/%s/frames/%s '%(baseDir, year, sigFrame) 
     if intLumi: 
       theCmd += '--intLumi %s '%intLumi
     if classModel: 

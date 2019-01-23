@@ -191,6 +191,7 @@ trainParams = {}
 trainParams['objective'] = 'multi:softprob'
 trainParams['num_class'] = nJetClasses
 trainParams['nthread'] = 1
+#trainParams['max_depth'] = 15
 paramExt = ''
 if opts.trainParams:
   paramExt = '__'
@@ -229,6 +230,8 @@ print 'predicted class           =  %s'%classPredY
 print 'truth class               =  %s'%classTestY
 print
 
+
+exit('Do not want plots')
 #define reco hists
 canv = useSty.setCanvas()
 truthHist = r.TH1F('truthHist','truthHist',nClasses,-0.5,nClasses-0.5)
