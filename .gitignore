@@ -1,3 +1,7 @@
 *.pdf
 *.png
 *.pyc
+*.done
+*.log
+*.err
+*.fail

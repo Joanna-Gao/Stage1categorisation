@@ -129,13 +129,18 @@ class CatOptim:
             if iName==0 or self.sortOthers:
               sigWeights = sigWeights * (self.sigDiscrims[name]<cuts[name][iCat+1])
               bkgWeights = bkgWeights * (self.bkgDiscrims[name]<cuts[name][iCat+1])
-              
+        
         sigHist = r.TH1F('sigHistTemp','sigHistTemp',160,100,180)
         #useSty.formatHisto(sigHist)  ###
-        fill_hist(sigHist, self.sigMass, weights=sigWeights)
+        fill_hist(sigHist, self.sigMass, weights=sigWeights) 
         sigCount = 0.68 * lumi * sigHist.Integral() 
         sigWidth = self.getRealSigma(sigHist)
         bkgHist = r.TH1F('bkgHistTemp','bkgHistTemp',160,100,180)
+        #useSty.formatHisto(bkgHist)
+        try:
+          bkgHist.Scale(1./bkgHist.Integral())
+        except:
+          print 'Warning: No content under the histogram!'
         # Temp plotting
         fill_hist(bkgHist, self.bkgMass, weights=bkgWeights)
         bkgCount = self.computeBkg(bkgHist, sigWidth)
@@ -146,12 +151,16 @@ class CatOptim:
           self.boundaries[name] = cuts[name]
         #sigHist.Draw('hist')  ###
         #sigHist.Fit('gaus')
-        #fit = sigHist.GetFunction('gaus')
+        #bkgHist.Draw('hist, same')
+        #bkgHist.Fit('expo')
+        #fit1 = sigHist.GetFunction('gaus')
+        #fit2 = bkgHist.GetFunction('expo')
         #try:
-        #  fit.Draw('same')
+        #  fit1.Draw('same')
+        #  fit2.Draw('same')
         #except:
         #  print 'Warning: did not get exponential!'
-        #theCanv.SaveAs('/home/hep/jg4814/CMSSW_10_2_0/2016/plots/multi/sigHistHigh_Proc%d.pdf'%self.iClass)  # save best bkg
+        #theCanv.SaveAs('/home/hep/jg4814/CMSSW_10_2_0/2016/plots/multi/HistHigh_Proc%d.pdf'%self.iClass)  # save best bkg
 
   def setSortOthers(self, val):
     self.sortOthers = val

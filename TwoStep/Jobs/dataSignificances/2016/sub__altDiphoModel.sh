@@ -4,7 +4,7 @@
 # qsub -q hep.q -o $PWD/submit.log -e $PWD/submit.err -l h_vmem=24G submit.sh
 
 #inputs
-CMD="python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d dataTotal.pkl -s signifTotal.pkl --intLumi 35.9 --className jetModel.model -m altDiphoModel.model "
+CMD="python dataSignificances.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d /home/hep/jg4814/CMSSW_10_2_0//2016/frames/dataTotal.pkl -s /home/hep/jg4814/CMSSW_10_2_0//2016/frames/signifTotal.pkl --intLumi 35.9 --className jetModel__max_depth_15.model -m altDiphoModel.model "
 MYDIR=/home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/TwoStep
 NAME=/home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/TwoStep/Jobs/dataSignificances/2016/sub__altDiphoModel
 RAND=$RANDOM

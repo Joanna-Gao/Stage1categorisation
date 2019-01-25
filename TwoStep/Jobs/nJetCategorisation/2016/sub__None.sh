@@ -4,7 +4,7 @@
 # qsub -q hep.q -o $PWD/submit.log -e $PWD/submit.err -l h_vmem=24G submit.sh
 
 #inputs
-CMD="python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees --intLumi 35.9 "
+CMD="python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0//2016/trees -d /home/hep/jg4814/CMSSW_10_2_0//2016/frames/jetTotal.pkl --intLumi 35.9 "
 MYDIR=/home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/TwoStep
 NAME=/home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/TwoStep/Jobs/nJetCategorisation/2016/sub__None
 RAND=$RANDOM
