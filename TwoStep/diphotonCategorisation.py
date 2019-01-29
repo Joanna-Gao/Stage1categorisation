@@ -128,6 +128,7 @@ diphoTW = trainTotal['diphoWeight'].values
 diphoAW = trainTotal['altDiphoWeight'].values
 diphoFW = trainTotal['weight'].values
 diphoM  = trainTotal['CMS_hgg_mass'].values
+diphoProc = trainTotal['proc'].values
 del trainTotal
 
 diphoX  = diphoX[diphoShuffle]
@@ -136,6 +137,7 @@ diphoTW = diphoTW[diphoShuffle]
 diphoAW = diphoAW[diphoShuffle]
 diphoFW = diphoFW[diphoShuffle]
 diphoM  = diphoM[diphoShuffle]
+diphoProc = diphoProc[diphoShuffle]
 
 diphoTrainX,  diphoValidX,  diphoTestX  = np.split( diphoX,  [diphoTrainLimit,diphoValidLimit] )
 diphoTrainY,  diphoValidY,  diphoTestY  = np.split( diphoY,  [diphoTrainLimit,diphoValidLimit] )
@@ -143,6 +145,7 @@ diphoTrainTW, diphoValidTW, diphoTestTW = np.split( diphoTW, [diphoTrainLimit,di
 diphoTrainAW, diphoValidAW, diphoTestAW = np.split( diphoAW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainFW, diphoValidFW, diphoTestFW = np.split( diphoFW, [diphoTrainLimit,diphoValidLimit] )
 diphoTrainM,  diphoValidM,  diphoTestM  = np.split( diphoM,  [diphoTrainLimit,diphoValidLimit] )
+diphoTrainProc,  diphoValidProc,  diphoTestProc  = np.split( diphoProc,  [diphoTrainLimit,diphoValidLimit] )
 
 #build the background discrimination BDT
 trainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainTW, feature_names=diphoVars)
@@ -193,7 +196,13 @@ print 'Alternative training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
 
-exit("Plotting not working for now so exit")
+#exit("Plotting not working for now so exit)
+
+plotDir = trainDir.replace('trees','plots')
+if not path.isdir(plotDir):
+  system('mkdir -p %s'%plotDir)
+
+'''
 #make some plots 
 plotDir = trainDir.replace('trees','plots')
 bkgEff, sigEff, nada = roc_curve(diphoTestY, diphoPredY, sample_weight=diphoTestFW)
@@ -218,7 +227,105 @@ plt.figure(4)
 xg.plot_importance(altDiphoModel)
 #plt.show()
 plt.savefig('%s/altDiphoImportances.pdf'%plotDir)
+'''
+# Plot stacked histogram of signal and bkg
+nOutputBins = 30
+theCanv = useSty.setCanvas()
+sigScoreW = diphoTestFW * (diphoTestProc == 'ggh')
+sigScoreHist = r.TH1F('sigScoreHist', 'sigScoreHist', nOutputBins, 0., 1.)
+useSty.formatHisto(sigScoreHist)
+sigScoreHist.SetTitle('')
+sigScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+fill_hist(sigScoreHist, diphoPredY, weights=sigScoreW)
+# bkgScoreW = diphoTestFW * (diphoTestY==0)
+bkgDiphoScoreW = diphoTestFW * (diphoTestProc=='dipho')
+bkgGjetScoreW = diphoTestFW * (diphoTestProc=='gjet')
+bkgQCDScoreW = diphoTestFW * (diphoTestProc=='qcd')
 
+# Define a variable for stack histograms
+stackHist = r.THStack('stackHist', '')
+
+# bkgScoreHist = r.TH1F('bkgScoreHist', 'bkgScoreHist', nOutputBins, 0., 1.)
+bkgDiphoScoreHist = r.TH1F('bkgDiphoScoreHist', 'bkgDiphoScoreHist', nOutputBins, 0., 1.)
+bkgGjetScoreHist = r.TH1F('bkgGjetScoreHist', 'bkgGjetScoreHist', nOutputBins, 0., 1.)
+bkgQCDScoreHist = r.TH1F('bkgQCDScoreHist', 'bkgQCDScoreHist', nOutputBins, 0., 1.)
+# useSty.formatHisto(bkgScoreHist)
+useSty.formatHisto(bkgDiphoScoreHist)
+useSty.formatHisto(bkgGjetScoreHist)
+useSty.formatHisto(bkgQCDScoreHist)
+# bkgScoreHist.SetTitle('')
+bkgDiphoScoreHist.SetTitle('')
+bkgGjetScoreHist.SetTitle('')
+bkgQCDScoreHist.SetTitle('')
+# bkgScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgDiphoScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgGjetScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+bkgQCDScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
+
+# fill_hist(bkgScoreHist, altDiphoPredY, weights=bkgScoreW)
+fill_hist(bkgDiphoScoreHist, diphoPredY, weights=bkgDiphoScoreW)
+fill_hist(bkgGjetScoreHist, diphoPredY, weights=bkgGjetScoreW)
+fill_hist(bkgQCDScoreHist, diphoPredY, weights=bkgQCDScoreW)
+
+#apply transformation to flatten ggH
+for iBin in range(1,nOutputBins+1):
+    sigVal = sigScoreHist.GetBinContent(iBin)
+    # bkgVal = bkgScoreHist.GetBinContent(iBin)
+    bkgDiphoVal = bkgDiphoScoreHist.GetBinContent(iBin)
+    bkgGjetVal =  bkgGjetScoreHist.GetBinContent(iBin)
+    bkgQCDVal =   bkgQCDScoreHist.GetBinContent(iBin)
+    sigScoreHist.SetBinContent(iBin, 1.)
+    if sigVal > 0.: 
+        # bkgScoreHist.SetBinContent(iBin, bkgVal/sigVal)
+        bkgDiphoScoreHist.SetBinContent(iBin, bkgDiphoVal/sigVal)       
+        bkgGjetScoreHist.SetBinContent(iBin, bkgGjetVal/sigVal)
+        bkgQCDScoreHist.SetBinContent(iBin, bkgQCDVal/sigVal)
+ 
+    else:
+        # bkgScoreHist.SetBinContent(iBin, 0)
+        bkgDiphoScoreHist.SetBinContent(iBin, 0)              
+        bkgGjetScoreHist.SetBinContent(iBin, 0)
+        bkgQCDScoreHist.SetBinContent(iBin, 0)
+
+sigScoreHist.Scale(1./sigScoreHist.Integral())
+# bkgScoreHist.Scale(1./bkgScoreHist.Integral())
+bkgDiphoScoreHist.Scale(1./bkgDiphoScoreHist.Integral())
+bkgGjetScoreHist.Scale(1./bkgGjetScoreHist.Integral())
+bkgQCDScoreHist.Scale(1./bkgQCDScoreHist.Integral())
+sigScoreHist.SetFillColor(46)
+sigScoreHist.Draw('hist')
+# bkgScoreHist.SetLineColor(r.kRed)
+bkgDiphoScoreHist.SetFillColor(34)
+bkgGjetScoreHist.SetFillColor(31)
+bkgQCDScoreHist.SetFillColor(40)
+bkgDiphoScoreHist.SetMarkerStyle(21)
+bkgGjetScoreHist.SetMarkerStyle(21)
+bkgQCDScoreHist.SetMarkerStyle(21)
+bkgDiphoScoreHist.SetMarkerColor(34)
+bkgGjetScoreHist.SetMarkerColor(31)
+bkgQCDScoreHist.SetMarkerColor(40)
+
+stackHist.Add(sigScoreHist)
+stackHist.Add(bkgDiphoScoreHist)
+stackHist.Add(bkgGjetScoreHist)
+stackHist.Add(bkgQCDScoreHist) 
+stackHist.Draw("hist")
+
+useSty.drawCMS()
+#useSty.drawEnPu(lumi='35.9 fb^{-1}')
+# Logging Y scale
+theCanv.SetLogy()
+# Add legend
+legend = r.TLegend(0.4,0.9,0.4,.9)
+legend.AddEntry(sigScoreHist,'ggH Signal','f')
+legend.AddEntry(bkgDiphoScoreHist,'Diphoton Background','f')
+legend.AddEntry(bkgGjetScoreHist,'GJet_ff Background','f')
+legend.AddEntry(bkgQCDScoreHist,'QCD_ff Background','f')
+legend.Draw()
+
+theCanv.SaveAs('%s/StackedHistogram_new.pdf'%plotDir)
+
+exit()
 #draw sig vs background distribution
 nOutputBins = 50
 theCanv = useSty.setCanvas()

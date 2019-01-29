@@ -15,12 +15,13 @@ intLumi = 35.9
 #intLumi = 41.5
 
 #script    = 'diphotonCategorisation.py'
-#paramSets = ['max_depth:8']
+#paramSets = [None] #['eta:0.3','eta:0.4','eta:0.5','eta:0.6', 'eta:0.7','eta:0.8','eta:0.9']
 #models    = None
 #classModel = None
-#dataFrame = 'trainTotal.pkl'
+#dataFrame = 'trainTotal_JECDown01sigma.pkl'#'trainTotal.pkl'
 ##dataFrame = None
 #sigFrame  = None
+#treeName = None#'_JECDown01sigma'
 
 #script    = 'nJetCategorisation.py'
 #paramSets = ['max_depth:15']
@@ -34,7 +35,7 @@ script    = 'dataSignificances.py'
 models    = ['altDiphoModel.model']#'diphoModel.model',
 #paramSets = [None,'max_depth:3','max_depth:4','max_depth:5','max_depth:10','eta:0.1','eta:0.5','lambda:0']
 paramSets = [None]
-classModel = 'jetModel__max_depth_15.model'
+classModel = 'jetModel_JECDown01sigma.model'
 for params in paramSets:
   if not params: continue
   params = params.split(',')
