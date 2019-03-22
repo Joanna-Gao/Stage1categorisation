@@ -184,14 +184,35 @@ classTrainP,  classValidP,  classTestP  = np.split( classP,  [classTrainLimit,cl
 classTrainR,  classValidR,  classTestR  = np.split( classR,  [classTrainLimit,classValidLimit] )
 classTrainY,  classValidY,  classTestY  = np.split( classY,  [classTrainLimit,classValidLimit] )
 
-#build the jet-classifier
-trainingJet = xg.DMatrix(classTrainI, label=classTrainJ, weight=classTrainJW, feature_names=jetVars)
-testingJet  = xg.DMatrix(classTestI,  label=classTestJ,  weight=classTestFW,  feature_names=jetVars)
+# Perform Jackknife
+cutFraction = 0.5  # Fraction of data used for Jackknife
+lenClassTrain = classTrainI.shape[0]  # Find the number of train and test data
+lenClassTest = classTestI.shape[0]
+
+shuffleTrain = np.random.permutation(lenClassTrain)
+shuffleTest  = np.random.permutation(lenClassTest)
+
+TrainI = classTrainI[shuffleTrain][:int(lenClassTrain*cutFraction)]
+TrainJ = classTrainJ[shuffleTrain][:int(lenClassTrain*cutFraction)]
+TrainJW = classTrainJW[shuffleTrain][:int(lenClassTrain*cutFraction)]
+
+TestI = classTestI[shuffleTest][:int(lenClassTest*cutFraction)]
+TestJ = classTestJ[shuffleTest][:int(lenClassTest*cutFraction)]
+TestFW = classTestFW[shuffleTest][:int(lenClassTest*cutFraction)]
+
+# Use Jackkniffed data to train model
+trainingJet = xg.DMatrix(TrainI, label=TrainJ, weight=TrainJW, feature_names=jetVars)
+testingJet  = xg.DMatrix(TestI,  label=TestJ,  weight=TestFW,  feature_names=jetVars)
+
+##build the jet-classifier
+#trainingJet = xg.DMatrix(classTrainI, label=classTrainJ, weight=classTrainJW, feature_names=jetVars)
+#testingJet  = xg.DMatrix(classTestI,  label=classTestJ,  weight=classTestFW,  feature_names=jetVars)
+
 trainParams = {}
 trainParams['objective'] = 'multi:softprob'
 trainParams['num_class'] = nJetClasses
 trainParams['nthread'] = 1
-#trainParams['max_depth'] = 15
+
 paramExt = ''
 if opts.trainParams:
   paramExt = '__'
@@ -269,23 +290,26 @@ wrongHist.Add(rightHist)
 rightHist.Divide(wrongHist)
 effHist = r.TH1F
 r.gStyle.SetOptStat(0)
+
 truthHist.GetYaxis().SetRangeUser(0.,8.)
 truthHist.Draw('hist')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
-#canv.Print('%s/truthJetHist%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/truthJetHist%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/truthJetHist%s.png'%(plotDir,paramExt))
+
 predHist.GetYaxis().SetRangeUser(0.,8.)
 predHist.Draw('hist')
-useSty.drawCMS()
-useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
+#useSty.drawCMS()
+#useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
 #canv.Print('%s/recoPredJetHist%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/recoPredJetHist%s.png'%(plotDir,paramExt))
+
 rightHist.GetYaxis().SetRangeUser(0.,1.)
 rightHist.Draw('hist')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
-#canv.Print('%s/recoEfficiencyJetHist%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/recoEfficiencyJetHist%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/recoEfficiencyJetHist%s.png'%(plotDir,paramExt))
 
 #setup 2D hists
@@ -320,29 +344,34 @@ for iBin in range(1,truthHist.GetNbinsX()+1):
     if iBin==1: firstBinVal = truthHist.GetBinContent(iBin)
     ratio = float(truthHist.GetBinContent(iBin)) / firstBinVal
     print 'ratio for bin %g is %1.7f'%(iBin,ratio)
-    
+
+
 wrongHist.Add(rightHist)
 rightHist.Divide(wrongHist)
 effHist = r.TH1F
 r.gStyle.SetOptStat(0)
+
 truthHist.GetYaxis().SetRangeUser(0.,8.)
 truthHist.Draw('hist')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
-#canv.Print('%s/truthJetHist%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/truthJetHist%s.pdf'%(plotDir,paramExt))
+
 # canv.Print('%s/truthJetHist%s.png'%(plotDir,paramExt))
 predHist.GetYaxis().SetRangeUser(0.,8.)
-predHist.Draw('hist')
+predHist.Draw('hist,same')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
-#canv.Print('%s/predJetHist%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/predJetHist%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/predJetHist%s.png'%(plotDir,paramExt))
+
 rightHist.GetYaxis().SetRangeUser(0.,1.)
 rightHist.Draw('hist')
 useSty.drawCMS()
 useSty.drawEnPu(lumi='%.1f fb^{-1}'%opts.intLumi)
-#canv.Print('%s/efficiencyJetHist%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/efficiencyJetHist%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/efficiencyJetHist%s.png'%(plotDir,paramExt))
+
 
 #generate weights for the 2D hists    
 sumwProcCatMapReco = {}
@@ -418,55 +447,25 @@ canv = r.TCanvas()
 r.gStyle.SetPaintTextFormat('2.0f')
 prettyHist(procHistReco)
 procHistReco.Draw('colz,text')
-#canv.Print('%s/procJetHistReco%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/procJetHistReco%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/procJetHistReco%s.png'%(plotDir,paramExt))
 prettyHist(catHistReco)
 catHistReco.Draw('colz,text')
-#canv.Print('%s/catJetHistReco%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/catJetHistReco%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/catJetHistReco%s.png'%(plotDir,paramExt))
 prettyHist(procHistPred)
 procHistPred.Draw('colz,text')
-#canv.Print('%s/procJetHistPred%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/procJetHistPred%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/procJetHistPred%s.png'%(plotDir,paramExt))
 prettyHist(catHistPred)
 catHistPred.Draw('colz,text')
-#canv.Print('%s/catJetHistPred%s.pdf'%(plotDir,paramExt))
+canv.Print('%s/catJetHistPred%s.pdf'%(plotDir,paramExt))
 # canv.Print('%s/catJetHistPred%s.png'%(plotDir,paramExt))
 
 # get feature importances
 fig1 = plt.figure(1)
 xg.plot_importance(jetModel)
 fig1.show()
-#fig1.savefig('%s/classImportances%s.pdf'%(plotDir,paramExt))
+fig1.savefig('%s/classImportances%s.pdf'%(plotDir,paramExt))
 # plt.savefig('%s/classImportances%s.png'%(plotDir,paramExt))
 
-'''
-# Plot RUMP
-fig2 = plt.figure(2)
-sns.set()
-areaRUMP = 0
-angles=np.linspace(0, 2*np.pi, len(binNames), endpoint=False)
-angles += np.pi/2 #rotate for niceness
-
-#calculate the area of the subtriangles between axes and sum
-for pair in it.combinations(missclassList,r=2):
-    smolarea = pair[0]*pair[1]*0.5*np.sin(2*np.pi/len(binNames))
-    areaRUMP += smolarea
-
-# close the plot or it won't draw one of the lines :(
-missclassList=np.concatenate((missclassList,[missclassList[0]]))
-angles=np.concatenate((angles,[angles[0]]))
-
-ax = fig2.add_subplot(111, polar=True)
-ax.set_ylim(0,1)
-ax.plot(angles, missclassList, 'o-', linewidth=2, label = 'model1')
-ax.fill(angles, missclassList, alpha=0.25)
-ax.set_thetagrids(angles * 180/np.pi, binNames)
-ax.set_title('catJetHistReco RAMP')
-ax.legend(loc=[-0.1,-0.05])
-ax.text(-1.1,1.2,'Area: %f' % (areaRUMP))
-ax.grid(True)
-fig2.savefig('%s/RUMP%s.pdf'%(plotDir,paramExt))
-
-print 'Area of the RUMP:', areaRUMP
-'''

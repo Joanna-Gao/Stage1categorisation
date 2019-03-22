@@ -147,6 +147,8 @@ diphoTrainFW, diphoValidFW, diphoTestFW = np.split( diphoFW, [diphoTrainLimit,di
 diphoTrainM,  diphoValidM,  diphoTestM  = np.split( diphoM,  [diphoTrainLimit,diphoValidLimit] )
 diphoTrainProc,  diphoValidProc,  diphoTestProc  = np.split( diphoProc,  [diphoTrainLimit,diphoValidLimit] )
 
+print diphoTrainTW
+
 #build the background discrimination BDT
 trainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainTW, feature_names=diphoVars)
 testingDipho  = xg.DMatrix(diphoTestX,  label=diphoTestY,  weight=diphoTestFW,  feature_names=diphoVars)
@@ -196,7 +198,7 @@ print 'Alternative training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
 
-#exit("Plotting not working for now so exit)
+exit("Plotting not working for now so exit")
 
 plotDir = trainDir.replace('trees','plots')
 if not path.isdir(plotDir):

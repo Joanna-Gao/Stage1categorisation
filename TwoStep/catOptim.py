@@ -107,7 +107,8 @@ class CatOptim:
 
   def optimise(self, lumi, nIters):
     '''Run the optimisation for a given number of iterations'''
-    for iIter in range(nIters):
+    Counter = 0
+    for iIter in range(nIters): 
       cuts = od()
       for iName,name in enumerate(self.names):
         tempCuts = np.random.uniform(self.lows[name], self.highs[name], self.nCats)
@@ -117,7 +118,10 @@ class CatOptim:
       sigs = []
       bkgs = []
 
-      #theCanv = useSty.setCanvas()  ### 
+      theCanv = useSty.setCanvas()  ###
+      #saveFile = r.TFile("/home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/TwoStep/BackgroundHists.root","RECREATE")
+      #saveFile.cd()
+      isCut = ""
       for iCat in range(self.nCats):
         lastCat = (iCat+1 == self.nCats)
         sigWeights = self.sigWeights
@@ -125,22 +129,25 @@ class CatOptim:
         for iName,name in enumerate(self.names):
           sigWeights = sigWeights * (self.sigDiscrims[name]>cuts[name][iCat])
           bkgWeights = bkgWeights * (self.bkgDiscrims[name]>cuts[name][iCat])
+          isCut = "High Cut"
           if not lastCat:
             if iName==0 or self.sortOthers:
               sigWeights = sigWeights * (self.sigDiscrims[name]<cuts[name][iCat+1])
               bkgWeights = bkgWeights * (self.bkgDiscrims[name]<cuts[name][iCat+1])
-        
+              isCut = "Low Cut"
+              print "Low Cuts"
+             
         sigHist = r.TH1F('sigHistTemp','sigHistTemp',160,100,180)
-        #useSty.formatHisto(sigHist)  ###
+        useSty.formatHisto(sigHist)  ###
         fill_hist(sigHist, self.sigMass, weights=sigWeights) 
         sigCount = 0.68 * lumi * sigHist.Integral() 
         sigWidth = self.getRealSigma(sigHist)
         bkgHist = r.TH1F('bkgHistTemp','bkgHistTemp',160,100,180)
-        #useSty.formatHisto(bkgHist)
-        try:
-          bkgHist.Scale(1./bkgHist.Integral())
-        except:
-          print 'Warning: No content under the histogram!'
+        useSty.formatHisto(bkgHist)  ###
+        #try:
+        #  bkgHist.Scale(1./bkgHist.Integral())
+        #except:
+        #  print 'Warning: No content under the histogram!'
         # Temp plotting
         fill_hist(bkgHist, self.bkgMass, weights=bkgWeights)
         bkgCount = self.computeBkg(bkgHist, sigWidth)
@@ -149,9 +156,51 @@ class CatOptim:
       if self.bests.update(sigs, bkgs):
         for name in self.names:
           self.boundaries[name] = cuts[name]
+        #print "Counter: ", Counter
+        #bkgNum = bkgHist.Integral()
+        #sigNum = sigHist.Integral()
+        #print "The number of bkg for bin %s is: %f"%(self.iClass, bkgNum)
+        #print "\nThe number of signals for bin %s is: %f"%(self.iClass, sigNum)
+        #Counter += 1
         #sigHist.Draw('hist')  ###
         #sigHist.Fit('gaus')
-        #bkgHist.Draw('hist, same')
+        
+        #bkgHist.Write() 
+        gausFit = r.TF1("m1","gaus",100.,180.)
+        expoFit = r.TF1("m2","expo",100.,180.)
+        totalFit = r.TF1("Total Fit", "gaus(0)+expo(3)",100.,180.)
+        
+        # Define the parameter list for the total function
+        par = []
+
+        sigHist.Scale(lumi)
+        sigHist.Fit(gausFit,"R")
+        bkgHist.Fit(expoFit,"R")
+
+        sPlusB = r.TF1('fSum','m1+m2',100,180) #this is the trick - only works with predefined functions like gaus and expo
+
+        sPlusB.SetLineColor(r.kRed)
+
+        bkgHist.Draw('hist')
+        expoFit.SetLineColor(r.kBlack)
+        expoFit.SetLineStyle(2)
+        expoFit.Draw('same')
+        sPlusB.Draw('same')
+
+        bkgHist.SetTitle('Background Histogram %s for Bin %d'%(isCut, self.iClass))
+        bkgHist.GetXaxis().SetTitle('Invariant Mass (GeV)')
+        bkgHist.GetYaxis().SetTitle('Number of Events')
+
+        legend = r.TLegend(0.4,0.9,0.4,.9)
+        legend.AddEntry(bkgHist,'Background Distribution','f')
+        legend.AddEntry(expoFit,'Background Fit','l')
+        legend.AddEntry(sPlusB,'Signal+Background Fit','l')
+        legend.Draw()
+
+        #try:
+        #  bkgHist.Fit('same')
+        #except:
+        #  print 'Warning: did not get exponential!'
         #bkgHist.Fit('expo')
         #fit1 = sigHist.GetFunction('gaus')
         #fit2 = bkgHist.GetFunction('expo')
@@ -160,7 +209,7 @@ class CatOptim:
         #  fit2.Draw('same')
         #except:
         #  print 'Warning: did not get exponential!'
-        #theCanv.SaveAs('/home/hep/jg4814/CMSSW_10_2_0/2016/plots/multi/HistHigh_Proc%d.pdf'%self.iClass)  # save best bkg
+        theCanv.SaveAs('/home/hep/jg4814/CMSSW_10_2_0/2016/plots/multi/HistLow_Proc%d.pdf'%self.iClass)  # save best bkg
 
   def setSortOthers(self, val):
     self.sortOthers = val
