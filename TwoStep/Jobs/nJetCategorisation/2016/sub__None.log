@@ -1,0 +1,38 @@
+About to run the following command:
+python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/frames/jetTotal.pkl --intLumi 35.9
+Successfully loaded the dataframe
+0J sum of weights is 30.557358, frac is 0.606560
+1J sum of weights is 13.625455, frac is 0.270464
+2J sum of weights is 6.195287, frac is 0.122976
+about to train jet counting BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/models/jetModel.model
+reconstructed  number of jets =  [0. 0. 2. ... 1. 0. 1.]
+predicted      number of jets =  [0 0 2 ... 1 0 1]
+truth          number of jets =  [0 1 2 ... 1 0 1]
+
+predicted number of jets  =  [0 0 2 ... 1 0 1]
+reconstructed diphoton pt =  [ 36.28819485  59.4415058  184.96623572 ...  77.45341148  21.94877345
+  89.98050571]
+predicted class           =  [0 0 7 ... 2 0 2]
+truth class               =  [0 2 7 ... 2 0 2]
+
+Failure..
+/srv/localstage/scratch/6698341.1.hep.q
+About to run the following command:
+python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/trees --intLumi 35.9
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/frames/jetTotal.pkl
+0J sum of weights is 30.557358, frac is 0.606560
+1J sum of weights is 13.625455, frac is 0.270464
+2J sum of weights is 6.195287, frac is 0.122976
+about to train jet counting BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/models/jetModel.model
+Failure..
+/srv/localstage/scratch/7449165.1.hep.q

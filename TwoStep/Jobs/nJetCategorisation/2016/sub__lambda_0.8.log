@@ -1,0 +1,27 @@
+About to run the following command:
+python nJetCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/trees --intLumi 35.9 --trainParams lambda:0.8
+got trees
+created total frame
+done mass cuts
+done basic preselection cuts
+about to add extra columns
+all columns added
+frame saved as /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/frames/jetTotal.pkl
+0J sum of weights is 30.557358, frac is 0.606560
+1J sum of weights is 13.625455, frac is 0.270464
+2J sum of weights is 6.195287, frac is 0.122976
+about to train jet counting BDT
+done
+saved as /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/models/jetModel__lambda_0.8.model
+reconstructed  number of jets =  [0. 0. 0. ... 0. 5. 1.]
+predicted      number of jets =  [0 0 0 ... 0 2 0]
+truth          number of jets =  [0 0 0 ... 0 2 2]
+
+predicted number of jets  =  [0 0 0 ... 0 2 0]
+reconstructed diphoton pt =  [ 18.87534705  26.17910682  64.46759336 ...  26.65078408 212.20546649
+  36.85019321]
+predicted class           =  [0 0 0 ... 0 8 0]
+truth class               =  [0 0 0 ... 0 8 5]
+
+Failure..
+/srv/localstage/scratch/6989448.1.hep.q

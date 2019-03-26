@@ -1,0 +1,18 @@
+About to run the following command:
+python diphotonCategorisation.py -t /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/trees -d /home/hep/jg4814/CMSSW_10_2_0/src/Stage1categorisation/2016/frames/trainTotal_JECDown01sigma.pkl --intLumi 35.9 --trainParams eta:0.3
+Successfully loaded the dataframe
+sigSumW 57.839706
+bkgSumW 17795.794922
+ratio 0.003250
+about to train diphoton BDT
+done
+about to train alternative diphoton BDT
+done
+Default training performance:
+area under roc curve for training set = 0.774
+area under roc curve for test set     = 0.774
+Alternative training performance:
+area under roc curve for training set = 0.820
+area under roc curve for test set     = 0.814
+Failure..
+/srv/localstage/scratch/6426408.1.hep.q

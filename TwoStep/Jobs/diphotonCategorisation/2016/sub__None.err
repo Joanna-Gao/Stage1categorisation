@@ -28,3 +28,17 @@ Info in <TCanvas::Print>: pdf file /home/hep/jg4814/CMSSW_10_2_0/2016/plots/Para
 Plotting not working for now so exit
 Info in <TCanvas::Print>: pdf file /home/hep/jg4814/CMSSW_10_2_0/2016/plots/Parameters/sigmarvHistogram.pdf has been created
 Plotting not working for now so exit
+Info in <TCanvas::Print>: pdf file /home/hep/jg4814/CMSSW_10_2_0/2016/plots/Parameters/leadmvaHistogram.pdf has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: can
+Warning in <TROOT::Append>: Replacing existing TH1: bkgDiphoScoreHist1 (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: bkgGjetScoreHist1 (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: bkgQCDScoreHist1 (Potential memory leak).
+Info in <TCanvas::Print>: pdf file /home/hep/jg4814/CMSSW_10_2_0/2016/plots/Parameters/subleadmvaHistogram.pdf has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: can
+Warning in <TROOT::Append>: Replacing existing TH1: bkgDiphoScoreHist1 (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: bkgGjetScoreHist1 (Potential memory leak).
+Warning in <TROOT::Append>: Replacing existing TH1: bkgQCDScoreHist1 (Potential memory leak).
+Traceback (most recent call last):
+  File "diphotonCategorisation.py", line 338, in <module>
+    bkgDiphoScoreHist1.Scale(1./bkgDiphoScoreHist1.Integral())
+ZeroDivisionError: float division by zero

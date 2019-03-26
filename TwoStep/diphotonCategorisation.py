@@ -312,47 +312,47 @@ stackHist1 = r.THStack('stackHist1', '')
 listHist = [leadmvaHist,subleadmvaHist,leadptomHist,subleadptomHist,
             leadetaHist,subleadetaHist,
             CosPhiHist,vtxprobHist,sigmarvHist,sigmawvHist]
-it = 8
-#for it in range(3):
-theCanv = useSty.setCanvas()
-bkgDiphoScoreHist1 = r.TH1F('bkgDiphoScoreHist1', 'bkgDiphoScoreHist', nOutputBins, 0, 0.3)
-bkgGjetScoreHist1 = r.TH1F('bkgGjetScoreHist1', 'bkgGjetScoreHist', nOutputBins,0, 0.3)
-bkgQCDScoreHist1 = r.TH1F('bkgQCDScoreHist1', 'bkgQCDScoreHist', nOutputBins, 0, 0.3)
+#it = 8
+for it in range(10):
+  theCanv = useSty.setCanvas()
+  bkgDiphoScoreHist1 = r.TH1F('bkgDiphoScoreHist1', 'bkgDiphoScoreHist', nOutputBins, 0, 0.3)
+  bkgGjetScoreHist1 = r.TH1F('bkgGjetScoreHist1', 'bkgGjetScoreHist', nOutputBins,0, 0.3)
+  bkgQCDScoreHist1 = r.TH1F('bkgQCDScoreHist1', 'bkgQCDScoreHist', nOutputBins, 0, 0.3)
 
-bkgDiphoScoreW = 1 * (diphoProc=='dipho')
-bkgGjetScoreW = 1 * (diphoProc=='gjet')
-bkgQCDScoreW = 1 * (diphoProc=='qcd')
-useSty.formatHisto(bkgDiphoScoreHist1)
-useSty.formatHisto(bkgGjetScoreHist1)
-useSty.formatHisto(bkgQCDScoreHist1)
-fill_hist(bkgDiphoScoreHist1, diphoX[:,it], weights=bkgDiphoScoreW)
-fill_hist(bkgGjetScoreHist1, diphoX[:,it],  weights=bkgGjetScoreW)
-fill_hist(bkgQCDScoreHist1, diphoX[:,it],   weights=bkgQCDScoreW)
-
-sigScoreW1 = 1 * (diphoProc == 'ggh')
-useSty.formatHisto(listHist[it])
-listHist[it].SetTitle('')
-listHist[it].GetXaxis().SetTitle('%s'%diphoVars[it])
-fill_hist(listHist[it], diphoX[:,it], weights=sigScoreW1)
-listHist[it].Scale(1./listHist[it].Integral())
-bkgDiphoScoreHist1.Scale(1./bkgDiphoScoreHist1.Integral())
-bkgGjetScoreHist1.Scale(1./bkgGjetScoreHist1.Integral())
-bkgQCDScoreHist1.Scale(1./bkgQCDScoreHist1.Integral())
-listHist[it].SetFillColor(46)
-#bkgDiphoScoreHist1.SetFillColor(34)
-#bkgGjetScoreHist1.SetFillColor(31)
-#bkgQCDScoreHist1.SetFillColor(40)
-
-#listHist[it].Draw('hist')
-#stackHist1.Add(listHist[it])
-stackHist1.Add(bkgDiphoScoreHist1)
-stackHist1.Add(bkgGjetScoreHist1)
-stackHist1.Add(bkgQCDScoreHist1)
-stackHist1.Draw('hist')
-listHist[it].Draw('hist,same')
-
-useSty.drawCMS()
-theCanv.SaveAs('%s/Parameters/%sHistogram.pdf'%(plotDir,diphoVars[it]))
+  bkgDiphoScoreW = 1 * (diphoProc=='dipho')
+  bkgGjetScoreW = 1 * (diphoProc=='gjet')
+  bkgQCDScoreW = 1 * (diphoProc=='qcd')
+  useSty.formatHisto(bkgDiphoScoreHist1)
+  useSty.formatHisto(bkgGjetScoreHist1)
+  useSty.formatHisto(bkgQCDScoreHist1)
+  fill_hist(bkgDiphoScoreHist1, diphoX[:,it], weights=bkgDiphoScoreW)
+  fill_hist(bkgGjetScoreHist1, diphoX[:,it],  weights=bkgGjetScoreW)
+  fill_hist(bkgQCDScoreHist1, diphoX[:,it],   weights=bkgQCDScoreW)
+  
+  sigScoreW1 = 1 * (diphoProc == 'ggh')
+  useSty.formatHisto(listHist[it])
+  listHist[it].SetTitle('')
+  listHist[it].GetXaxis().SetTitle('%s'%diphoVars[it])
+  fill_hist(listHist[it], diphoX[:,it], weights=sigScoreW1)
+  listHist[it].Scale(1./listHist[it].Integral())
+  bkgDiphoScoreHist1.Scale(1./bkgDiphoScoreHist1.Integral())
+  bkgGjetScoreHist1.Scale(1./bkgGjetScoreHist1.Integral())
+  bkgQCDScoreHist1.Scale(1./bkgQCDScoreHist1.Integral())
+  listHist[it].SetFillColor(46)
+  bkgDiphoScoreHist1.SetFillColor(34)
+  bkgGjetScoreHist1.SetFillColor(31)
+  bkgQCDScoreHist1.SetFillColor(40)
+  
+  #listHist[it].Draw('hist')
+  #stackHist1.Add(listHist[it])
+  stackHist1.Add(bkgDiphoScoreHist1)
+  stackHist1.Add(bkgGjetScoreHist1)
+  stackHist1.Add(bkgQCDScoreHist1)
+  stackHist1.Draw('hist')
+  listHist[it].Draw('hist,same')
+  
+  useSty.drawCMS()
+  theCanv.SaveAs('%s/Parameters/%sHistogram.pdf'%(plotDir,diphoVars[it]))
 
 
 
