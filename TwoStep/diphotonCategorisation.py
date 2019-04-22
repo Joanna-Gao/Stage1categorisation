@@ -171,7 +171,7 @@ if opts.trainParams:
     trainParams[key] = data
     paramExt += '%s_%s__'%(key,data)
   paramExt = paramExt[:-2]
-'''
+
 print 'about to train diphoton BDT'
 diphoModel = xg.train(trainParams, trainingDipho)
 print 'done'
@@ -182,8 +182,8 @@ if not path.isdir(modelDir):
   system('mkdir -p %s'%modelDir)
 diphoModel.save_model('%s/diphoModel%s.model'%(modelDir,paramExt))
 print 'saved as %s/diphoModel%s.model'%(modelDir,paramExt)
-'''
-'''
+
+
 #build same thing but with equalised weights
 altTrainingDipho = xg.DMatrix(diphoTrainX, label=diphoTrainY, weight=diphoTrainAW, feature_names=diphoVars)
 print 'about to train alternative diphoton BDT'
@@ -208,7 +208,7 @@ altDiphoPredY = altDiphoModel.predict(testingDipho)
 print 'Alternative training performance:'
 print 'area under roc curve for training set = %1.3f'%( roc_auc_score(diphoTrainY, altDiphoPredYxcheck, sample_weight=diphoTrainFW) )
 print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW) )
-'''
+
 
 # cutfr = 0.5 #fracton to keep for each jackknife iteration
 # countvar = 0
@@ -253,7 +253,7 @@ print 'area under roc curve for test set     = %1.3f'%( roc_auc_score(diphoTestY
 # print 'Mean = (test) ', np.mean(rocstest)
 # print 'Standard deviation (test) = ', np.std(rocstest)
 
-#exit("Plotting not working for now so exit")
+exit("Plotting not working for now so exit")
 #make some plots 
 
 plotDir = trainDir.replace('trees','plots')
@@ -263,10 +263,16 @@ if not path.isdir(plotDir):
 '''
 bkgEff, sigEff, nada = roc_curve(diphoTestY, diphoPredY, sample_weight=diphoTestFW)
 plt.figure(1)
-plt.plot(bkgEff, sigEff, label='Default Training')
-plt.xlabel('Background Efficiency')
+plt.plot(bkgEff, sigEff, label='Default Weighting')
+plt.plot([0,1], [0,1],'--',color='gray')
 plt.ylabel('Signal Efficiency')
-#plt.savefig('%s/diphoROC.pdf'%plotDir)
+plt.xlabel('Background Efficiency')
+plt.ylim(0.,1.)
+plt.legend(loc='lower right')
+plt.rcParams.update({'font.size': 15})
+plt.savefig('%s/diphoROC.pdf'%plotDir)
+
+#exit("Plotting not working for now so exit")
 
 bkgEff, sigEff, nada = roc_curve(diphoTestY, altDiphoPredY, sample_weight=diphoTestFW)
 #plt.figure(2)
@@ -278,7 +284,7 @@ plt.legend(loc='lower right')
 plt.title('ROC Curve for Eta = 0.6, Max Depth = 8')
 plt.ylim(0,1)
 plt.savefig('%s/BothROC_tuned.pdf'%plotDir)
-exit("Plotting not working for now so exit")
+'''
 
 plt.figure(3)
 xg.plot_importance(diphoModel)
@@ -287,7 +293,7 @@ plt.savefig('%s/diphoImportances.pdf'%plotDir)
 plt.figure(4)
 xg.plot_importance(altDiphoModel)
 plt.savefig('%s/altDiphoImportances.pdf'%plotDir)
-'''
+
 
 # Plot individual variables of the event
 nOutputBins = 50
@@ -304,57 +310,68 @@ sigmawvHist = r.TH1F('sigmawvHist', 'sigmawvHist', nOutputBins, 0, 0.3)
 # Define bkg hist
 
 
-
-
 #Define a stacked hist
 stackHist1 = r.THStack('stackHist1', '')
 
 listHist = [leadmvaHist,subleadmvaHist,leadptomHist,subleadptomHist,
             leadetaHist,subleadetaHist,
             CosPhiHist,vtxprobHist,sigmarvHist,sigmawvHist]
-#it = 8
-for it in range(10):
-  theCanv = useSty.setCanvas()
-  bkgDiphoScoreHist1 = r.TH1F('bkgDiphoScoreHist1', 'bkgDiphoScoreHist', nOutputBins, 0, 0.3)
-  bkgGjetScoreHist1 = r.TH1F('bkgGjetScoreHist1', 'bkgGjetScoreHist', nOutputBins,0, 0.3)
-  bkgQCDScoreHist1 = r.TH1F('bkgQCDScoreHist1', 'bkgQCDScoreHist', nOutputBins, 0, 0.3)
+it = 9
+#for it in range(10):
+theCanv = useSty.setCanvas()
+bkgDiphoScoreHist1 = r.TH1F('bkgDiphoScoreHist1', 'bkgDiphoScoreHist', nOutputBins, 0, 0.3)
+bkgGjetScoreHist1 = r.TH1F('bkgGjetScoreHist1', 'bkgGjetScoreHist', nOutputBins,0, 0.3)
+bkgQCDScoreHist1 = r.TH1F('bkgQCDScoreHist1', 'bkgQCDScoreHist', nOutputBins,0, 0.3)
 
-  bkgDiphoScoreW = 1 * (diphoProc=='dipho')
-  bkgGjetScoreW = 1 * (diphoProc=='gjet')
-  bkgQCDScoreW = 1 * (diphoProc=='qcd')
-  useSty.formatHisto(bkgDiphoScoreHist1)
-  useSty.formatHisto(bkgGjetScoreHist1)
-  useSty.formatHisto(bkgQCDScoreHist1)
-  fill_hist(bkgDiphoScoreHist1, diphoX[:,it], weights=bkgDiphoScoreW)
-  fill_hist(bkgGjetScoreHist1, diphoX[:,it],  weights=bkgGjetScoreW)
-  fill_hist(bkgQCDScoreHist1, diphoX[:,it],   weights=bkgQCDScoreW)
-  
-  sigScoreW1 = 1 * (diphoProc == 'ggh')
-  useSty.formatHisto(listHist[it])
-  listHist[it].SetTitle('')
-  listHist[it].GetXaxis().SetTitle('%s'%diphoVars[it])
-  fill_hist(listHist[it], diphoX[:,it], weights=sigScoreW1)
-  listHist[it].Scale(1./listHist[it].Integral())
-  bkgDiphoScoreHist1.Scale(1./bkgDiphoScoreHist1.Integral())
-  bkgGjetScoreHist1.Scale(1./bkgGjetScoreHist1.Integral())
-  bkgQCDScoreHist1.Scale(1./bkgQCDScoreHist1.Integral())
-  listHist[it].SetFillColor(46)
-  bkgDiphoScoreHist1.SetFillColor(34)
-  bkgGjetScoreHist1.SetFillColor(31)
-  bkgQCDScoreHist1.SetFillColor(40)
-  
-  #listHist[it].Draw('hist')
-  #stackHist1.Add(listHist[it])
-  stackHist1.Add(bkgDiphoScoreHist1)
-  stackHist1.Add(bkgGjetScoreHist1)
-  stackHist1.Add(bkgQCDScoreHist1)
-  stackHist1.Draw('hist')
-  listHist[it].Draw('hist,same')
-  
-  useSty.drawCMS()
-  theCanv.SaveAs('%s/Parameters/%sHistogram.pdf'%(plotDir,diphoVars[it]))
+bkgDiphoScoreW = 1 * (diphoProc=='dipho')
+bkgGjetScoreW = 1 * (diphoProc=='gjet')
+bkgQCDScoreW = 1 * (diphoProc=='qcd')
+useSty.formatHisto(bkgDiphoScoreHist1)
+useSty.formatHisto(bkgGjetScoreHist1)
+useSty.formatHisto(bkgQCDScoreHist1)
+fill_hist(bkgDiphoScoreHist1, diphoX[:,it], weights=bkgDiphoScoreW)
+fill_hist(bkgGjetScoreHist1, diphoX[:,it],  weights=bkgGjetScoreW)
+fill_hist(bkgQCDScoreHist1, diphoX[:,it],   weights=bkgQCDScoreW)
+bkgDiphoScoreHist1.SetXTitle('%s'%diphoVars[it])
+bkgGjetScoreHist1.SetXTitle('%s'%diphoVars[it])
+bkgQCDScoreHist1.SetXTitle('%s'%diphoVars[it])
+bkgDiphoScoreHist1.SetXTitle('(Arbitrary Unit)')
+bkgGjetScoreHist1.SetXTitle('(Arbitrary Unit)')
+bkgQCDScoreHist1.SetXTitle('(Arbitrary Unit)')
 
+sigScoreW1 = 1 * (diphoProc == 'ggh')
+useSty.formatHisto(listHist[it])
+listHist[it].SetTitle('')
+listHist[it].GetXaxis().SetTitle('%s'%diphoVars[it])
+fill_hist(listHist[it], diphoX[:,it], weights=sigScoreW1)
+listHist[it].Scale(1./listHist[it].Integral())
+bkgDiphoScoreHist1.Scale(1./bkgDiphoScoreHist1.Integral())
+bkgGjetScoreHist1.Scale(1./bkgGjetScoreHist1.Integral())
+bkgQCDScoreHist1.Scale(1./bkgQCDScoreHist1.Integral())
+listHist[it].SetFillColor(46)
+bkgDiphoScoreHist1.SetFillColor(34)
+bkgGjetScoreHist1.SetFillColor(31)
+bkgQCDScoreHist1.SetFillColor(40)
 
+#listHist[it].Draw('hist')
+#stackHist1.Add(listHist[it])
+stackHist1.Add(bkgDiphoScoreHist1)
+stackHist1.Add(bkgGjetScoreHist1)
+stackHist1.Add(bkgQCDScoreHist1)
+
+stackHist1.Draw('hist')
+listHist[it].Draw('hist,same')
+
+# Legend
+legend = r.TLegend(0.4,0.9,0.4,.9)
+legend.AddEntry(listHist[it],'ggH Signal','f')
+legend.AddEntry(bkgDiphoScoreHist1,'Diphoton Background','f')
+legend.AddEntry(bkgGjetScoreHist1,'GJet Background','f')
+legend.AddEntry(bkgQCDScoreHist1,'QCD Background','f')
+legend.Draw()
+
+useSty.drawCMS()
+theCanv.SaveAs('%s/Parameters/%sHistogram.pdf'%(plotDir,diphoVars[it]))
 
 exit("Plotting not working for now so exit")
 #draw sig vs background stacked histogram
@@ -365,7 +382,8 @@ sigScoreHist = r.TH1F('sigScoreHist', 'sigScoreHist', nOutputBins, 0., 1.)
 useSty.formatHisto(sigScoreHist)
 sigScoreHist.SetTitle('')
 sigScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
-fill_hist(sigScoreHist, diphoPredY, weights=sigScoreW)
+# fill_hist(sigScoreHist, diphoPredY, weights=sigScoreW)
+fill_hist(sigScoreHist, altDiphoPredY, weights=sigScoreW)
 # bkgScoreW = diphoTestFW * (diphoTestY==0)
 bkgDiphoScoreW = diphoTestFW * (diphoTestProc=='dipho')
 bkgGjetScoreW = diphoTestFW * (diphoTestProc=='gjet')
@@ -392,9 +410,10 @@ bkgGjetScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 bkgQCDScoreHist.GetXaxis().SetTitle('Diphoton BDT score')
 
 # fill_hist(bkgScoreHist, altDiphoPredY, weights=bkgScoreW)
-fill_hist(bkgDiphoScoreHist, diphoPredY, weights=bkgDiphoScoreW)
-fill_hist(bkgGjetScoreHist, diphoPredY, weights=bkgGjetScoreW)
-fill_hist(bkgQCDScoreHist, diphoPredY, weights=bkgQCDScoreW)
+# fill_hist(bkgDiphoScoreHist, diphoPredY, weights=bkgDiphoScoreW)
+fill_hist(bkgDiphoScoreHist, altDiphoPredY, weights=bkgDiphoScoreW)
+fill_hist(bkgGjetScoreHist, altDiphoPredY, weights=bkgGjetScoreW)
+fill_hist(bkgQCDScoreHist, altDiphoPredY, weights=bkgQCDScoreW)
 
 #apply transformation to flatten ggH
 for iBin in range(1,nOutputBins+1):
@@ -430,9 +449,9 @@ bkgQCDScoreHist.SetFillColor(40)
 bkgDiphoScoreHist.SetMarkerStyle(21)
 bkgGjetScoreHist.SetMarkerStyle(21)
 bkgQCDScoreHist.SetMarkerStyle(21)
-bkgDiphoScoreHist.SetMarkerColor(34)
-bkgGjetScoreHist.SetMarkerColor(31)
-bkgQCDScoreHist.SetMarkerColor(40)
+bkgDiphoScoreHist.SetMarkerColor(r.kBlack)
+bkgGjetScoreHist.SetMarkerColor(r.kBlack)
+bkgQCDScoreHist.SetMarkerColor(r.kBlack)
 
 stackHist.Add(sigScoreHist)
 stackHist.Add(bkgDiphoScoreHist)
@@ -457,7 +476,7 @@ legend.AddEntry(bkgGjetScoreHist,'GJet Background','f')
 legend.AddEntry(bkgQCDScoreHist,'QCD Background','f')
 legend.Draw()
 
-theCanv.SaveAs('%s/StackedHistogram_new.pdf'%plotDir)
+theCanv.SaveAs('%s/StackedHistogram_Alt.pdf'%plotDir)
 
 exit("Plotting not working for now so exit")
 #draw sig vs background distribution

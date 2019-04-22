@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "dataSignificances.py", line 156, in <module>
+    diphoModel.load_model('%s/%s'%(modelDir,opts.modelName))
+  File "/cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/core.py", line 1127, in load_model
+    _check_call(_LIB.XGBoosterLoadModel(self.handle, c_str(fname)))
+  File "/cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/core.py", line 130, in _check_call
+    raise XGBoostError(_LIB.XGBGetLastError())
+xgboost.core.XGBoostError: [17:51:46] src/io/local_filesys.cc:199: Check failed: allow_null  LocalFileSystem::Open "/home/hep/jg4814/CMSSW_10_2_0/2016/models/None": No such file or directory
+
+Stack trace returned 10 entries:
+[bt] (0) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/./lib/libxgboost.so(dmlc::StackTrace[abi:cxx11]()+0x3b) [0x7f4905401c7b]
+[bt] (1) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/./lib/libxgboost.so(dmlc::io::LocalFileSystem::Open(dmlc::io::URI const&, char const*, bool)+0x5cd) [0x7f49055adebd]
+[bt] (2) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/./lib/libxgboost.so(dmlc::Stream::Create(char const*, char const*, bool)+0x1fe) [0x7f490559fffe]
+[bt] (3) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/py2-xgboost/0.72/lib/python2.7/site-packages/xgboost/./lib/libxgboost.so(XGBoosterLoadModel+0x18) [0x7f49054132f8]
+[bt] (4) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/cms/cmssw/CMSSW_10_2_0/external/slc6_amd64_gcc700/lib/libffi.so.6(ffi_call_unix64+0x4c) [0x7f4917c05242]
+[bt] (5) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/cms/cmssw/CMSSW_10_2_0/external/slc6_amd64_gcc700/lib/libffi.so.6(ffi_call+0x1a1) [0x7f4917c042a1]
+[bt] (6) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/python/2.7.14-omkpbe4/lib/python2.7/lib-dynload/_ctypes.so(_ctypes_callproc+0x485) [0x7f4909718115]
+[bt] (7) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/external/python/2.7.14-omkpbe4/lib/python2.7/lib-dynload/_ctypes.so(+0x8b0f) [0x7f490970eb0f]
+[bt] (8) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/cms/cmssw/CMSSW_10_2_0/external/slc6_amd64_gcc700/lib/libpython2.7.so.1.0(PyObject_Call+0x43) [0x7f4919a6cef3]
+[bt] (9) /cvmfs/cms.cern.ch/slc6_amd64_gcc700/cms/cmssw/CMSSW_10_2_0/external/slc6_amd64_gcc700/lib/libpython2.7.so.1.0(PyEval_EvalFrameEx+0x189a) [0x7f4919b1e34a]
+
+
